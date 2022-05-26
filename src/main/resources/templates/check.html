@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    <meta name="context-path" th:content="@{/}"/>-->
+    <meta th:name="_csrf_token" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header_name" th:content="${_csrf.headerName}"/>
+    <title sec:authorize="hasAnyRole('USER')" layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">사용자</title>
+    <title sec:authorize="hasAnyRole('MANAGER')" layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">관리자</title>
+
+
+    <link rel="stylesheet" th:href="@{/ext/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/ext/font-awesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/ext/sweetalert2/css/sweetalert2.min.css}">
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+</head>
+<body>
+<h4>
+    <span th:text="${userName}"></span>
+    <span>님 프로필</span>
+</h4>
+</body>
+</html>

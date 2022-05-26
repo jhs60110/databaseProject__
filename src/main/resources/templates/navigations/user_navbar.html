@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<div layout:fragment="Nav">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/main">프람텍1조 (일반사원)</a>
+<!--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
+<!--                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <span class="navbar-toggler-icon"></span>-->
+<!--            </button>-->
+
+            <a class="collapse navbar-collapse" id="Y_navbarSupportedContent">
+
+                <ul class="nav-item">
+                    <a class="nav-link" th:href="@{/project/projectShow}">프로젝트</a>
+                </ul>
+                <ul class="nav-item">
+                    <a class="nav-link" th:href="@{/user/myPage}">마이페이지</a>
+                </ul>
+                <ul class="nav-item">
+                    <a class="nav-link" th:href="@{/logout}">로그아웃</a>
+                </ul>
+            </a>
+        </nav>
+    </div>
+
+</div>
+</body>
+</html>

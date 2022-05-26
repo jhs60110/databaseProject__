@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic}"
+>
+<th:block layout:fragment="title">
+    <title>This page is a project page</title>
+</th:block>
+
+<!--<th:block layout:fragment="search">-->
+<!--    <div th:replace="fragments/common :: search"></div>-->
+<!--</th:block>-->
+
+<th:block layout:fragment="search">
+    <div th:replace="fragments/common :: searchProject"></div>
+</th:block>
+
+<th:block layout:fragment="content">
+    <div class="table-responsive clearfix">
+        <h2>진행중인 프로젝트</h2>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>프로젝트 이름</th>
+                <th>시작일</th>
+                <th>종료일</th>
+                <th>pm</th>
+                <th>고객사</th>
+                <th>수주액</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+<!--            빈 프로젝트가 있는지 확인하는 부분-->
+
+            <tr th:each="elem: ${ProjectDe}">
+                <td th:text="${elem.pr_name}"></td>
+                <td th:text="${elem.pr_start_date}"></td>
+                <td th:text="${elem.pr_end_date}"></td>
+                <td th:text="${elem.pr_pm}"></td>
+                <td th:text="${elem.pr_client}"></td>
+                <td th:text="${elem.pr_price}"></td>
+                <td>
+                    <button class="pChoose"  th:value="${elem.pr_id}" th:id="|pChoose${elem.pr_id}|" >자세히</button>
+                </td>
+            </tr>
+            <tr th:unless="${not #lists.isEmpty( ProjectDe )}">
+                <td colspan="6">조회된 결과가 없습니다.</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <th:block layout:fragment="paging">
+            <nav th:replace="fragments/common :: pagination"></nav>
+        </th:block>
+    </div>
+
+    <button onClick="location.href='project/projectTermination'">종료된 프로젝트 보기 </button>
+</th:block>
+
+
+</div>
+</body>
+
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        $('.pChoose').on('click', (e) => {
+            console.log(e.target.value);
+        })
+
+
+        function movePage(uri, queryString) {
+            location.href = uri + queryString;
+        }
+
+        function searchProject(form) {
+            /*[- 드롭다운이 아닌 메인 검색 키워드로 검색했을 때 -]*/
+            if (isEmpty(form) == true) {
+                var searchKeyword = document.getElementById("projectSearchKeyword");
+                if (isEmpty(searchKeyword.value) == true) {
+                    alert("키워드를 입력해 주세요.");
+                    searchKeyword.focus();
+                    return false;
+                }
+
+                form = document.getElementById("projectSearchForm");
+                form.searchKeyword.value = searchKeyword.value;
+                form.submit();
+            }
+
+            if (isEmpty(form.searchKeyword.value) == true) {
+                alert("키워드를 입력해 주세요.");
+                form.searchKeyword.focus();
+                return false;
+            }
+        }
+
+        /*[- end of function -]*/
+        /*]]>*/
+    </script>
+</th:block>
+</html>

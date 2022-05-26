@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/base}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block>
+        <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}">
+    </th:block>
+</head>
+<div layout:fragment="page_content" id="page_content">
+    <div class="container">
+        <div class="content">
+            <!-- 메인페이지 이미지부분 -->
+            <div class="row" id="mainimg">
+                <div class="col-12" id="bannerImage">
+                    <img th:src="@{/img/background.png}" width="50%" height="500"
+                         style="opacity: 0.65; filter: alpha(opacity=40); min-width: 1000px; ">
+                    <div class="row" id="welcomeMessageDiv">
+                        <div class="col-12">
+                            <h1>database project</h1>
+                        </div>
+                        <div class="col-12">
+                            <p>명지대학교 2022 데이터베이스 프로젝트
+                                <br><br>1조 서해수,김형진,신재용,한병찬,김범석</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</html>

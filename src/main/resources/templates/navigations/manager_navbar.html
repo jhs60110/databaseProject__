@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<div layout:fragment="Nav">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">데베프1조(경영진)</a>
+<!--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
+<!--                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <span class="navbar-toggler-icon"></span>-->
+<!--            </button>-->
+
+            <div class="collapse navbar-collapse" id="Y_navbarSupportedContent">
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           id="navbarDropdownN" role="button" data-toggle="dropdown" aria-expanded="false">
+                            프로젝트
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" th:href="@{/project/projectInsert}">프로젝트 생성</a>
+                            <a class="dropdown-item" th:href="@{/project/projectShow}">프로젝트 보기</a>
+                        </div>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/employee/list}">사원관리</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/user/myPage}">마이페이지</a>
+                    </li>
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/logout}">로그아웃</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+</div>
+</body>
+</html>

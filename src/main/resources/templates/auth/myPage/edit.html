@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/base}">
+
+<head>
+  <title>마이페이지</title>
+  <style>
+      body, html {
+          height: 100%;
+          background-repeat: no-repeat;
+          background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+      }
+  </style>
+</head>
+<div layout:fragment="page_content" id="page_content">
+  <div class="container">
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-3 ">
+        <div class="list-group ">
+          <a th:href="@{/user/{id}(id=${userID})}" class="list-group-item list-group-item-action">내 프로필</a>
+          <a th:href="@{/user/edit/{id}(id=${userID})}" class="list-group-item list-group-item-action active">프로필
+            수정하기</a>
+          <a th:href="@{/logout}" class="list-group-item list-group-item-action">로그아웃</a>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <h4>
+                  <span th:text="${userInfo.userName}"></span>
+                  <span>님 프로필</span>
+                </h4>
+                <hr>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <form th:action="@{/user/edit/${userID}}" th:method="post">
+                  <div class="form-group row">
+                    <label for="companyName" class="col-4 col-form-label">회사명</label>
+                    <div class="col-8">
+                      <input id="companyName" name="companyName" class="form-control here"
+                             type="text" required="required"
+                             th:value="${userInfo.companyName}" onclick="this.value='';">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="userName" class="col-4 col-form-label">이름</label>
+                    <div class="col-8">
+                      <input id="userName" name="userName" class="form-control here"
+                             type="text" required="required"
+                             th:value="${userInfo.userName}" onclick="this.value='';">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="partCode" class="col-4 col-form-label">소속부서</label>
+                    <div class="col-8">
+                      <select id="partCode" name="partCode" class="custom-select" required="required">
+                        <option value="A" default>경영팀</option>
+                        <option value="B">사업팀</option>
+                        <option value="C">운영팀</option>
+                        <option value="D">연구팀</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="emailAddress" class="col-4 col-form-label">이메일</label>
+                    <div class="col-8">
+                      <input id="emailAddress" name="emailAddress" class="form-control here"
+                             type="text" required="required"
+                             th:value="${userInfo.emailAddress}" onclick="this.value='';">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="workDescription" class="col-4 col-form-label">담당업무</label>
+                    <div class="col-8">
+                      <input id="workDescription" name="workDescription" class="form-control here"
+                             type="text" required="required"
+                             th:value="${userInfo.workDescription}" onclick="this.value='';">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label for="businessNo" class="col-4 col-form-label">사업자번호</label>
+                    <div class="col-8">
+                      <input id="businessNo" name="businessNo" class="form-control here" type="text"
+                             maxlength="10" required="required"
+                             th:value="${userInfo.businessNo}" onclick="this.value='';">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-8">
+                      <input type="hidden" id="userID" name="userID" required="required"
+                             th:value="${userID}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="offset-4 col-8">
+                      <button id="userInfoUpdate" name="submit" type="submit" class="btn btn-primary">저장</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--    <div class="container">-->
+  <!--        <span class="text-center"><br><br><br><h1 style="color:red; margin-top: 80px;">접근이 불가능한 페이지입니다</h1></span>-->
+  <!--    </div>-->
+</div>
+<div layout:fragment="script_area">
+  <script th:src="@{/js/auth/myPage/edit.js}"></script>
+</div>
+</html>

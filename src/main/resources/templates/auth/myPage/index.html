@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/base}">
+
+<head>
+  <title>마이페이지</title>
+  <style>
+      body {
+          height: 100%;
+          background-color: #eef1f5;
+      }
+  </style>
+</head>
+<div layout:fragment="page_content" id="page_content">
+  <div class="container" th:if="${userID}==${currentUserID}">
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-3 ">
+        <div class="list-group ">
+          <a th:href="@{/user/{id}(id=${userID})}" class="list-group-item list-group-item-action active">내 프로필</a>
+          <a th:href="@{/user/edit/{id}(id=${userID})}" class="list-group-item list-group-item-action">프로필 수정하기</a>
+          <a th:href="@{/logout}" class="list-group-item list-group-item-action">로그아웃</a>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <h4>
+                  <span th:text="${userInfo.userName}"></span>
+                  <span>님 프로필</span>
+                </h4>
+                <hr style="height: 1px; background-color:darkgray;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group row">
+                  <label for="emailAddress" class="col-4 col-form-label">이메일</label>
+                  <div class="col-8">
+                    <span id="emailAddress" name="emailAddress" th:text="${userInfo.emailAddress}"></span>
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                  <label for="companyName" class="col-4 col-form-label">회사명</label>
+                  <div class="col-8">
+                    <span id="companyName" name="companyName" th:text="${userInfo.companyName}"></span>
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                  <label for="partName" class="col-4 col-form-label">소속부서</label>
+                  <div class="col-8">
+                    <span id="partName" name="partName"></span>
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                  <label for="workDescription" class="col-4 col-form-label">담당업무</label>
+                  <div class="col-8">
+                    <span id="workDescription" name="workDescription" th:text="${userInfo.workDescription}"></span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+  </div>
+  <div class="container" th:if="${userID}!=${currentUserID}">
+    <span class="text-center"><br><br><br><h1 style="color:red; margin-top: 80px;">접근이 불가능한 페이지입니다</h1></span>
+  </div>
+</div>
+<div layout:fragment="script_area">
+
+  <script th:inline="javascript">
+    const partCode = [[${userInfo.partCode}]]
+  </script>
+</div>
+</html>

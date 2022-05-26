@@ -1,0 +1,292 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en"-->
+<!--      xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{/layout/base}"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    &lt;!&ndash;    <meta name="context-path" th:content="@{/}"/>&ndash;&gt;-->
+<!--    <meta th:name="_csrf_token" th:content="${_csrf.token}"/>-->
+<!--    <meta th:name="_csrf_header_name" th:content="${_csrf.headerName}"/>-->
+
+<!--    <link rel="stylesheet" th:href="@{/ext/bootstrap/css/bootstrap.min.css}">-->
+<!--    <link rel="stylesheet" th:href="@{/ext/font-awesome/css/all.min.css}">-->
+<!--    <link rel="stylesheet" th:href="@{/ext/sweetalert2/css/sweetalert2.min.css}">-->
+<!--    <link rel="stylesheet" th:href="@{/css/common/common.css}">-->
+
+
+<!--</head>-->
+<!--<body>-->
+
+<!--&lt;!&ndash;<th:block layout:fragment="searchProject">&ndash;&gt;-->
+<!--&lt;!&ndash;<div layout:fragment="searchProject">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div th:replace="fragments/common :: searchProject"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</th:block>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<th:block layout:fragment="page_content" id="page_content">&ndash;&gt;-->
+<!--&lt;!&ndash;    <br><br><br>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div layout:fragment="searchProject">&ndash;&gt;-->
+<!--    <th:block layout:fragment="searchProject">-->
+<!--        <div th:replace="fragments/common :: searchProject"></div>-->
+<!--    </th:block>-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--    <H2>진행중인 프로젝트</H2>-->
+<!--    <br>-->
+<!--    <th:block layout:fragment="content">-->
+<!--        <div class="table-responsive clearfix">-->
+<!--            <table class="table table-hover">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>프로젝트 이름</th>-->
+<!--                    <th>시작일</th>-->
+<!--                    <th>종료일</th>-->
+<!--                    <th>pm</th>-->
+<!--                    <th>고객사</th>-->
+<!--                    <th>수주액</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--&lt;!&ndash;                <tr th:if="${not #lists.isEmpty( employeeList )}" th:each="row : ${employeeList}">&ndash;&gt;-->
+<!--                <tr th:each="elem: ${ProjectDe}">-->
+<!--                    <td th:text="${elem.pr_name}"></td>-->
+<!--                    <td th:text="${elem.pr_start_date}"></td>-->
+<!--                    <td th:text="${elem.pr_end_date}"></td>-->
+<!--                    <td th:text="${elem.pr_pm}"></td>-->
+<!--                    <td th:text="${elem.pr_client}"></td>-->
+<!--                    <td th:text="${elem.pr_price}"></td>-->
+<!--&lt;!&ndash;                    <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button class="emChoose"  th:value="${row.e_id}" th:id="|emChoose${row.e_id}|" >선택</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </td>&ndash;&gt;-->
+<!--                </tr>-->
+<!--&lt;!&ndash;                <tr th:unless="${not #lists.isEmpty( employeeList )}">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <td colspan="5">조회된 결과가 없습니다.</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                </tr>&ndash;&gt;-->
+<!--                </tbody>-->
+<!--            </table>-->
+
+<!--&lt;!&ndash;            <th:block layout:fragment="paging">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <nav th:replace="fragments/common :: pagination"></nav>&ndash;&gt;-->
+<!--&lt;!&ndash;            </th:block>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </th:block>-->
+
+<!--    <div th:if="${userRole} != '1'">-->
+<!--        <input text="${userRole}">-->
+<!--        <button>button</button>-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <button>종료된 프로젝트 보기 </button>-->
+<!--    <H2>종료된 프로젝트</H2>-->
+<!--    <br>-->
+<!--    <th:block layout:fragment="content">-->
+<!--        <div class="table-responsive clearfix">-->
+<!--            <table class="table table-hover">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>프로젝트 이름</th>-->
+<!--                    <th>시작일</th>-->
+<!--                    <th>종료일</th>-->
+<!--                    <th>pm</th>-->
+<!--                    <th>고객사</th>-->
+<!--                    <th>수주액</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                &lt;!&ndash;                <tr th:if="${not #lists.isEmpty( employeeList )}" th:each="row : ${employeeList}">&ndash;&gt;-->
+<!--                <tr th:each="elem: ${ProjectDeT}">-->
+<!--                    <td th:text="${elem.pr_name}"></td>-->
+<!--                    <td th:text="${elem.pr_start_date}"></td>-->
+<!--                    <td th:text="${elem.pr_end_date}"></td>-->
+<!--                    <td th:text="${elem.pr_pm}"></td>-->
+<!--                    <td th:text="${elem.pr_client}"></td>-->
+<!--                    <td th:text="${elem.pr_price}"></td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </th:block>-->
+<!--&lt;!&ndash;</th:block>&ndash;&gt;-->
+<!--</div>-->
+<!--</body>-->
+<!--<th:block layout:fragment="script">-->
+<!--    <script th:inline="javascript">-->
+<!--        /*<![CDATA[*/-->
+
+<!--        $('.emChoose').on('click', (e) => {-->
+<!--            console.log(e.target.value);-->
+<!--        })-->
+
+
+<!--        function movePage(uri, queryString) {-->
+<!--            location.href = uri + queryString;-->
+<!--        }-->
+
+<!--        function searchProject(form) {-->
+<!--            /*[- 드롭다운이 아닌 메인 검색 키워드로 검색했을 때 -]*/-->
+<!--            if (isEmpty(form) == true) {-->
+<!--                var searchKeyword = document.getElementById("mainSearchKeyword");-->
+<!--                if (isEmpty(searchKeyword.value) == true) {-->
+<!--                    alert("키워드를 입력해 주세요.");-->
+<!--                    searchKeyword.focus();-->
+<!--                    return false;-->
+<!--                }-->
+
+<!--                form = document.getElementById("projectSearchForm");-->
+<!--                form.searchKeyword.value = searchKeyword.value;-->
+<!--                form.submit();-->
+<!--            }-->
+
+<!--            if (isEmpty(form.searchKeyword.value) == true) {-->
+<!--                alert("키워드를 입력해 주세요.");-->
+<!--                form.searchKeyword.focus();-->
+<!--                return false;-->
+<!--            }-->
+<!--        }-->
+
+<!--        /*[- end of function -]*/-->
+<!--        /*]]>*/-->
+<!--    </script>-->
+<!--</th:block>-->
+<!--</html>-->
+
+<!-- 아래는 새롭게 작성한 내용 -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic}"
+>
+<th:block layout:fragment="title">
+    <title>This page is a project page</title>
+</th:block>
+
+<th:block layout:fragment="searchProject">
+    <div th:replace="fragments/common :: searchProject"></div>
+</th:block>
+<!--<th:block layout:fragment="search">-->
+
+<!--    <div th:replace="fragments/common :: search"></div>-->
+<!--</th:block>-->
+
+<th:block layout:fragment="content">
+    <div class="table-responsive clearfix">
+        <h2>진행중인 프로젝트</h2>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>프로젝트 이름</th>
+                <th>시작일</th>
+                <th>종료일</th>
+                <th>pm</th>
+                <th>고객사</th>
+                <th>수주액</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--            빈 프로젝트가 있는지 확인하는 부분-->
+            <!--            <tr th:if="${not #lists.isEmpty( ProjectDeT )}" th:each="row : ${ProjectDeT}">-->
+            <tr th:each="elem: ${ProjectDe}">
+                <td th:text="${elem.pr_name}"></td>
+                <td th:text="${elem.pr_start_date}"></td>
+                <td th:text="${elem.pr_end_date}"></td>
+                <td th:text="${elem.pr_pm}"></td>
+                <td th:text="${elem.pr_client}"></td>
+                <td th:text="${elem.pr_price}"></td>
+            </tr>
+            <tr th:unless="${not #lists.isEmpty( ProjectDe )}">
+                <td colspan="6">조회된 결과가 없습니다.</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <th:block layout:fragment="paging">
+            <nav th:replace="fragments/common :: pagination"></nav>
+        </th:block>
+    </div>
+    <<<<<<< HEAD
+</th:block>
+
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        $('.emChoose').on('click', (e) => {
+            console.log(e.target.value);
+        })
+
+
+        function movePage(uri, queryString) {
+            location.href = uri + queryString;
+        }
+
+        function searchProject(form) {
+            /*[- 드롭다운이 아닌 메인 검색 키워드로 검색했을 때 -]*/
+            if (isEmpty(form) == true) {
+                var searchKeyword = document.getElementById("mainSearchKeyword");
+                if (isEmpty(searchKeyword.value) == true) {
+                    alert("키워드를 입력해 주세요.");
+                    searchKeyword.focus();
+                    return false;
+                }
+
+                form = document.getElementById("projectSearchForm");
+                form.searchKeyword.value = searchKeyword.value;
+                form.submit();
+            }
+
+            if (isEmpty(form.searchKeyword.value) == true) {
+                alert("키워드를 입력해 주세요.");
+                form.searchKeyword.focus();
+                return false;
+            }
+        }
+
+        /*[- end of function -]*/
+        /*]]>*/
+    </script>
+</th:block>
+=======
+<br>
+<br>
+<button>종료된 프로젝트 보기 </button>
+<!--    <H2>종료된 프로젝트</H2>-->
+<!--    <br>-->
+<!--    <table id="project_content">-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <table id="static_table" border="1"-->
+<!--                       class="table table-bordered table-striped">-->
+<!--                    <thead>-->
+<!--                    &lt;!&ndash;종료된 프로젝트&ndash;&gt;-->
+<!--                    <tr>-->
+<!--                        <th>프로젝트 이름</th>-->
+<!--                        <th>시작일</th>-->
+<!--                        <th>종료일</th>-->
+<!--                        <th>PM</th>-->
+<!--                        <th>고객사</th>-->
+<!--                        <th>수주액</th>-->
+<!--                    </tr>-->
+<!--                    <tr th:each="elem: ${ProjectDeT}">-->
+<!--                        <td th:text="${elem.pr_name}"></td>-->
+<!--                        <td th:text="${elem.pr_start_date}"></td>-->
+<!--                        <td th:text="${elem.pr_end_date}"></td>-->
+<!--                        <td th:text="${elem.pr_pm}"></td>-->
+<!--                        <td th:text="${elem.pr_client}"></td>-->
+<!--                        <td th:text="${elem.pr_price}"></td>-->
+<!--                    </tr>-->
+
+<!--                    </thead>-->
+<!--                </table>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+</div>
+</body>
+>>>>>>> 135c677fa94b7b58e37e4c63bd4def58636d769b
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.project.ProjectMapper">
+    <insert id="createProject" parameterType="ProjectDescr" statementType="CALLABLE">
+        { CALL inputProject(
+                #{pr_name},
+                #{pr_start_date},
+                #{pr_end_date},
+                #{pr_pm},
+                #{pr_client},
+                #{pr_price}
+            )
+            }
+    </insert>
+
+    <select id="selectNTProject" resultType="ProjectDescr" parameterType="String" statementType="CALLABLE">
+        select *
+        from project
+        where pr_termination = 'N';
+    </select>
+    <select id="getProjectList" resultType="com.example.demo.model.project.ProjectDescr" parameterType="com.example.demo.model.project.ProjectDescr">
+        SELECT *
+        FROM project
+        --         WHERE
+        <include refid="CommonMapper.projectSearch" />
+        ORDER BY pr_id ASC
+        <include refid="CommonMapper.paging" />
+    </select>
+
+    <select id="getProjectTotalCount" resultType="int" parameterType="com.example.demo.model.project.ProjectDescr">
+        SELECT COUNT(*)
+        FROM project
+        --         WHERE
+        <include refid="CommonMapper.projectSearch" />
+    </select>
+</mapper>
+

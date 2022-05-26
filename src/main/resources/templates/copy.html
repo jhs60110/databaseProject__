@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+<title>This page is a list page</title>
+
+<form action="#" id="searchform-header" class="searchform js__toggle active pull-right">
+    <input type="search" placeholder="Search..." class="input-search">
+    <button class="mdi mdi-magnify button-search" type="submit">
+        <i class="fa fa-search" aria-hidden="true"></i>
+    </button>
+</form>
+
+<div class="table-responsive clearfix">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>사번</th>
+            <th>이름</th>
+            <th>학력</th>
+            <th>부서</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${not #lists.isEmpty( employeeList )}" th:each="row : ${employeeList}">
+            <td th:text="${row.e_id}"></td>
+            <td th:text="${row.e_name}"></td>
+            <td th:text="${row.academic_level}"></td>
+            <td th:text="${row.department}"></td>
+        </tr>
+        <tr th:unless="${not #lists.isEmpty( employeeList )}">
+            <td colspan="4">조회된 결과가 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <th:block>
+        <nav aria-label="Page navigation" class="text-center">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </th:block>
+</div>
+</html>
+

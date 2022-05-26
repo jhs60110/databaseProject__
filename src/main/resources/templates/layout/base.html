@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="context-path" th:content="@{/}"/>
+    <meta th:name="_csrf_token" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header_name" th:content="${_csrf.headerName}"/>
+    <title sec:authorize="hasAnyRole('1')" layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">사원</title>
+    <title sec:authorize="hasAnyRole('2')" layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">경영진</title>
+
+    <!--브라우저 상단 탭 icon 지정-->
+    <link rel="icon" type="image/png" th:href="@{/img/isms_logo.png}" sizes="32x32"/>
+    <link rel="icon" type="image/png" th:href="@{/img/isms_logo.png}" sizes="16x16"/>
+
+    <link rel="stylesheet" th:href="@{/ext/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/ext/font-awesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/ext/sweetalert2/css/sweetalert2.min.css}">
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+</head>
+<body>
+<div sec:authorize="isAnonymous()" layout:insert="~{/navigations/_navbar}" th:remove="tag"></div>
+<div sec:authorize="hasRole('ROLE_1')" layout:insert="~{/navigations/user_navbar}" th:remove="tag"></div>
+<div sec:authorize="hasRole('ROLE_2')" layout:insert="~{/navigations/manager_navbar}" th:remove="tag"></div>
+<th:block layout:fragment="page_content"/>
+
+<script th:src="@{/ext/jquery/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/ext/jquery/js/jquery-ui.min.js}"></script>
+<script th:src="@{/ext/jquery/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/ext/jquery/js/jquery-ui.min.js}"></script>
+<script th:src="@{/ext/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/ext/sweetalert2/js/sweetalert2.all.min.js}"></script>
+<script th:src="@{/ext/chart/dist/chart.min.js}"></script>
+
+
+<script th:src="@{/js/common/common.js}"></script>
+<script th:src="@{/js/common/_navbar.js}"></script>
+
+<script type="text/javascript">
+    const _ctx = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + $('meta[name=context-path]').attr("content");
+    const token = $('meta[name="_csrf"]').attr('content');
+
+</script>
+
+<th:block layout:fragment="script_area"/>
+</body>
+</html>
