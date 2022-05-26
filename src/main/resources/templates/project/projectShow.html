@@ -11,13 +11,15 @@
 <!--    <div th:replace="fragments/common :: search"></div>-->
 <!--</th:block>-->
 
+
 <th:block layout:fragment="search">
+    <h2>진행중인 프로젝트</h2>
     <div th:replace="fragments/common :: searchProject"></div>
 </th:block>
 
 <th:block layout:fragment="content">
     <div class="table-responsive clearfix">
-        <h2>진행중인 프로젝트</h2>
+
         <table class="table table-hover">
             <thead>
             <tr>

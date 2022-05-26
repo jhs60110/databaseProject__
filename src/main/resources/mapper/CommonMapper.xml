@@ -18,9 +18,8 @@
                 <when test="searchType != null and searchType != ''">
                     <choose>
                         <when test="'e_id'.equals(searchType)">
---                             AND
---                             WHERE e_id LIKE CONCAT('%', #{searchKeyword}, '%')
-                            WHERE e_id = CONCAT('', #{searchKeyword}, '')
+                            --                             AND
+                            WHERE e_id LIKE CONCAT('%', #{searchKeyword}, '%')
                         </when>
                         <when test="'e_name'.equals(searchType)">
 --                             AND
@@ -61,8 +60,7 @@
                     <choose>
                         <when test="'pr_name'.equals(searchType)">
                             --                             AND
-                            --                             WHERE e_id LIKE CONCAT('%', #{searchKeyword}, '%')
-                            WHERE pr_name = CONCAT('%', #{searchKeyword}, '%')
+                            WHERE pr_name LIKE CONCAT('%', #{searchKeyword}, '%')
                         </when>
                         <when test="'pr_pm'.equals(searchType)">
                             --                             AND
