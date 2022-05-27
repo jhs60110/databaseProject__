@@ -132,22 +132,20 @@
                                     </choose>
                                 </otherwise>
                         </choose>
---                         AND pr_termination = "N"
                     </when>
                     <otherwise>
-                        AND
+
                         <choose>
                             <when test="startDate != '' and endDate == ''">
-                                DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
+                                AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
                             </when>
                             <when test="startDate == '' and endDate != ''">
-                                DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
+                                AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
                             </when>
                             <when test="startDate != '' and endDate != ''">
-                                DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
+                                AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
                             </when>
                         </choose>
---                         AND pr_termination = "N"
                     </otherwise>
                 </choose>
             </when>
