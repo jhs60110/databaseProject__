@@ -1,6 +1,5 @@
 package com.example.demo.controller.user;
 
-import com.example.demo.model.project.ProjectDescr;
 import com.example.demo.model.user.User;
 import com.example.demo.model.user.employeeDto;
 import com.example.demo.service.user.UserService;
@@ -18,8 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -113,12 +110,22 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         String userName = user.getE_name();
+        Long userEid = user.getE_id();
+        logger.info("userEid {}", userEid);
         logger.info("userName {}", userName);
         model.addAttribute("userName", userName);
+        model.addAttribute("userEid", userEid);
+        model.addAttribute("user", user);
 //        User user = (User) userDetailServiceImp.loadUserByUsername(id);
 
-        return "/user/myPage";
+        return "user/myPage";
+    }
+    @GetMapping("/editMyPage")
+    public String editMyPage () {
+        logger.info("마이페이지 수정");
+        return "user/editMyPage";
     }
 }
+
 
 //>>>>>>> c7f07dcced6e59cf813cc75cf88c5b129d8fd97c

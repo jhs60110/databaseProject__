@@ -22,7 +22,8 @@
     <select id="getProjectList" resultType="com.example.demo.model.project.ProjectDescr" parameterType="com.example.demo.model.project.ProjectDescr">
         SELECT *
         FROM project
-        --         WHERE
+        WHERE
+        pr_termination = 'N'
         <include refid="CommonMapper.projectSearch" />
 
         ORDER BY pr_id ASC
@@ -32,7 +33,8 @@
     <select id="getProjectTotalCount" resultType="int" parameterType="com.example.demo.model.project.ProjectDescr">
         SELECT COUNT(*)
         FROM project
-        --         WHERE
+        WHERE
+        pr_termination = 'N'
         <include refid="CommonMapper.projectSearch" />
     </select>
 

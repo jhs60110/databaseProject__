@@ -1,29 +1,138 @@
-<!DOCTYPE html>
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/base}"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--    <meta name="context-path" th:content="@{/}"/>-->
-    <meta th:name="_csrf_token" th:content="${_csrf.token}"/>
-    <meta th:name="_csrf_header_name" th:content="${_csrf.headerName}"/>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en"-->
+<!--      xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{/layout/base}"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    &lt;!&ndash;    <meta name="context-path" th:content="@{/}"/>&ndash;&gt;-->
+<!--    <meta th:name="_csrf_token" th:content="${_csrf.token}"/>-->
+<!--    <meta th:name="_csrf_header_name" th:content="${_csrf.headerName}"/>-->
 
-    <link rel="stylesheet" th:href="@{/ext/bootstrap/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/ext/font-awesome/css/all.min.css}">
-    <link rel="stylesheet" th:href="@{/ext/sweetalert2/css/sweetalert2.min.css}">
-    <link rel="stylesheet" th:href="@{/css/common/common.css}">
-</head>
-<body>
-<div layout:fragment="page_content" id="page_content">
-<h4>
-    <span th:text="${userName}"></span>
-    <span>님 프로필</span>
-</h4>
-</div>
-</body>
+<!--    <link rel="stylesheet" th:href="@{/ext/bootstrap/css/bootstrap.min.css}">-->
+<!--    <link rel="stylesheet" th:href="@{/ext/font-awesome/css/all.min.css}">-->
+<!--    <link rel="stylesheet" th:href="@{/ext/sweetalert2/css/sweetalert2.min.css}">-->
+<!--    <link rel="stylesheet" th:href="@{/css/common/common.css}">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div layout:fragment="page_content" id="page_content">-->
+<!--<h4>-->
+<!--    <span th:text="${userName}"></span>-->
+<!--    <span th:text="${userEid}"></span>-->
+<!--    <span>님 프로필</span>-->
+<!--</h4>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic}"
+>
+<th:block layout:fragment="title">
+    <title>This page is a list page</title>
+</th:block>
+
+<!--<th:block layout:fragment="search">-->
+<!--    <div th:replace="fragments/common :: search"></div>-->
+<!--</th:block>-->
+
+<th:block layout:fragment="content">
+    <div class="table-responsive clearfix">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>정보</th>
+                <th>데이터</th>
+            </tr>
+            </thead>
+            <tbody>
+<!--            <tr th:if="${not #lists.isEmpty(  )}" th:each="row : ${employeeList}">-->
+            <tr>
+                <td th:text="사번"></td>
+                <td th:text="${user.getE_id()}"></td>
+            </tr>
+            <tr>
+                <td th:text="이름"></td>
+                <td th:text="${user.getE_name()}"></td>
+            </tr>
+            <tr>
+                <td th:text="주민등록번호"></td>
+                <td th:text="${user.getResident_num()}"></td>
+            </tr>
+            <tr>
+                <td th:text="학력"></td>
+                <td th:text="${user.getAcademic_level()}"></td>
+            </tr>
+            <tr>
+                <td th:text="직급"></td>
+                <td th:if="${user.getRole().equals('1')}" th:text="일반사원"></td>
+                <td th:if="${user.getRole().equals('2')}" th:text="경영진"></td>
+            </tr>
+            <tr>
+                <td th:text="아이디"></td>
+                <td th:text="${user.getId()}"></td>
+            </tr>
+            <tr>
+                <td th:text="비밀번호"></td>
+                <td th:text="${user.getPassword()}"></td>
+            </tr>
+            <tr>
+                <td th:text="부서"></td>
+<!--                <td th:text="${user.getDepartment()}"></td>-->
+                <td th:if="${user.getDepartment().equals('00')}" th:text="개발자"></td>
+                <td th:if="${user.getDepartment().equals('11')}" th:text="경영관리"></td>
+                <td th:if="${user.getDepartment().equals('22')}" th:text="연구개발"></td>
+                <td th:if="${user.getDepartment().equals('33')}" th:text="마케팅"></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/user/editMyPage" role="button" class="btn btn-primary">수정하기</a>
+    </div>
+</th:block>
+
+<!--<th:block layout:fragment="script">-->
+<!--    <script th:inline="javascript">-->
+<!--        /*<![CDATA[*/-->
+
+<!--        $('.emChoose').on('click', (e) => {-->
+<!--            console.log(e.target.value);-->
+<!--        })-->
+
+
+<!--        function movePage(uri, queryString) {-->
+<!--            location.href = uri + queryString;-->
+<!--        }-->
+
+<!--        function searchEmployee(form) {-->
+<!--            /*[- 드롭다운이 아닌 메인 검색 키워드로 검색했을 때 -]*/-->
+<!--            if (isEmpty(form) == true) {-->
+<!--                var searchKeyword = document.getElementById("mainSearchKeyword");-->
+<!--                if (isEmpty(searchKeyword.value) == true) {-->
+<!--                    alert("키워드를 입력해 주세요.");-->
+<!--                    searchKeyword.focus();-->
+<!--                    return false;-->
+<!--                }-->
+
+<!--                form = document.getElementById("searchForm");-->
+<!--                form.searchKeyword.value = searchKeyword.value;-->
+<!--                form.submit();-->
+<!--            }-->
+
+
+<!--            if (isEmpty(form.searchKeyword.value) == true) {-->
+<!--                alert("키워드를 입력해 주세요.");-->
+<!--                form.searchKeyword.focus();-->
+<!--                return false;-->
+<!--            }-->
+<!--        }-->
+
+<!--        /*[- end of function -]*/-->
+<!--        /*]]>*/-->
+<!--    </script>-->
+<!--</th:block>-->
 </html>
