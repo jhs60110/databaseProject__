@@ -62,4 +62,18 @@ public class ProjectService {
         }
         return projectList;
     }
+
+    public List<ProjectDescr> getProjectTList(ProjectDescr params) {
+        List<ProjectDescr> projectList = Collections.emptyList();
+        int projectTotalCount = projectMapper.getProjectTTotalCount(params);
+
+        PaginationInfo paginationInfo = new PaginationInfo(params);
+        paginationInfo.setTotalRecordCount(projectTotalCount);
+
+        params.setPaginationInfo(paginationInfo);
+        if (projectTotalCount > 0) {
+            projectList = projectMapper.getProjectTList(params);
+        }
+        return projectList;
+    }
 }

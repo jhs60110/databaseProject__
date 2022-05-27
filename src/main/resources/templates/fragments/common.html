@@ -106,7 +106,52 @@
     </div>
 </div>
 
+<div th:fragment="searchProjectT" id="projectT-search" class="input-group">
+    <input type="text" id="projectTSearchKeyword" class="form-control" th:value="${params.searchKeyword}" placeholder="키워드를 입력해 주세요." />
+    <div class="input-group-btn">
+        <div class="btn-group" role="group">
+            <div class="dropdown dropdown-lg">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                <div class="dropdown-menu dropdown-menu-right" role="menu">
+                    <!--/* 검색 form */-->
+                    <form id="projectTSearchForm" th:action="@{/project/projectTermination}" method="get" th:onsubmit="return searchProject(this)" class="form-horizontal" role="form">
+                        <!-- /* 현재 페이지 번호, 페이지당 출력할 데이터 개수, 페이지 하단에 출력할 페이지 개수 Hidden 파라미터 */ -->
+                        <input type="hidden" name="currentPageNo" value="1" />
+                        <input type="hidden" name="recordsPerPage" th:value="${params.recordsPerPage}" />
+                        <input type="hidden" name="pageSize" th:value="${params.pageSize}" />
 
+                        <div class="form-group">
+                            <label for="filter">검색 유형</label>
+                            <select name="searchType" class="form-control">
+                                <option value="" th:selected="${#strings.isEmpty( params.searchType )}">전체</option>
+                                <!--                                <option value="e_id" th:selected="${#strings.equals( params.searchType, 'e_id' )}">사번</option>-->
+                                <option value="pr_name" th:selected="${#strings.equals( params.searchType, 'pr_name' )}">프로젝트 이름</option>
+                                <option value="pr_pm" th:selected="${#strings.equals( params.searchType, 'pr_pm' )}">PM</option>
+                                <option value="pr_client" th:selected="${#strings.equals( params.searchType, 'pr_client' )}">고객사</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contain">키워드</label>
+                            <input type="text" name="searchKeyword" class="form-control" th:value="${params.searchKeyword}" />
+                        </div>
+                        <!--                        날짜검색 시작-->
+                        <div class="form-group">
+                            <label for="contain">시작일</label>
+                            <input type="text" name="startDate" class="form-control" th:value="${params.startDate}" placeholder="YYYY-MM-DD 형식으로 입력해주세요."/>
+                        </div>
+                        <div class="form-group">
+                            <label for="contain">종료일</label>
+                            <input type="text" name="endDate" class="form-control" th:value="${params.endDate}" placeholder="YYYY-MM-DD 형식으로 입력해주세요."/>
+                        </div>
+                        <!--                        날짜검색 끝-->
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                    </form>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="searchProject(null)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        </div>
+    </div>
+</div>
 
 
 </html>

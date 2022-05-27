@@ -59,15 +59,26 @@ public class projectController {
     public String projectInsertPage(Model model) {
         return "/project/projectInsert";
     }
+    
 
     @GetMapping("/projectTermination")
-    public String projectTermination(Model model) {
-        List<ProjectTDescr> ProjectT = projectTService.selectTProject();
+    public String successLogin(@ModelAttribute("params") ProjectDescr params, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        String userName = user.getE_name();
+        logger.info("userName {}", userName);
+        model.addAttribute("userName", userName);
 
-        model.addAttribute("ProjectDeT", ProjectT);
-        return "/project/projectTermination";
+        String userRole = user.getRole();
+        model.addAttribute("userRole", userRole);
+
+
+        List<ProjectDescr> Project = projectService.getProjectTList(params);
+
+        model.addAttribute("ProjectDeT", Project);
+
+        return "project/projectTermination";
     }
-
 
     @GetMapping("/projectDescription/{pr_id}")
     public String projectDescriptionPage(Model model, @PathVariable String pr_id, @ModelAttribute("params") ProjectDescr params,  @ModelAttribute("push_pr_id") Participant push_pr_id) {
