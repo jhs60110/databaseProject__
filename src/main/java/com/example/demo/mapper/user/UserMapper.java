@@ -28,6 +28,6 @@ public interface UserMapper {
     public List<employeeDto> getEmployeeList(employeeDto params);
 
     //회원 정보 수정(마이페이지)
-    void updateUserInfo(employeeDto UserInfoRequestDto);
+    public void updateUserInfo(employeeDto userInfoRequestDto);
 }
 

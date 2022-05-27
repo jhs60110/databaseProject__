@@ -20,26 +20,26 @@
                     <choose>
                         <when test="'e_id'.equals(searchType)">
                             --                             AND
-                            WHERE e_id LIKE CONCAT('%', #{searchKeyword}, '%')
+                            AND e_id LIKE CONCAT('%', #{searchKeyword}, '%')
                         </when>
                         <when test="'e_name'.equals(searchType)">
 --                             AND
-                            WHERE e_name LIKE CONCAT('%', #{searchKeyword}, '%')
+                            AND e_name LIKE CONCAT('%', #{searchKeyword}, '%')
                         </when>
                         <when test="'academicLevel'.equals(searchType)">
 --                             AND
-                            WHERE academic_level LIKE CONCAT('%', #{searchKeyword}, '%')
+                            AND academic_level LIKE CONCAT('%', #{searchKeyword}, '%')
                         </when>
                         <when test="'department'.equals(searchType)">
 --                             AND
-                            WHERE department LIKE CONCAT('%', #{searchKeyword}, '%')
+                            AND department LIKE CONCAT('%', #{searchKeyword}, '%')
                         </when>
                     </choose>
                 </when>
                 <!-- 검색 유형이 없을 때 -->
                 <otherwise>
 --                     AND
-                    WHERE
+                    AND
                     (
                     e_id LIKE CONCAT('%', #{searchKeyword}, '%')
                     OR e_name LIKE CONCAT('%', #{searchKeyword}, '%')
@@ -64,7 +64,7 @@
                                     <choose>
                                         <when test="'pr_name'.equals(searchType)">
                                             --                             AND
-                                            WHERE pr_name LIKE CONCAT('%', #{searchKeyword}, '%')
+                                            AND pr_name LIKE CONCAT('%', #{searchKeyword}, '%')
                                             <choose>
                                                 <when test="startDate != '' and endDate == ''">
                                                     AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
@@ -79,7 +79,7 @@
                                         </when>
                                         <when test="'pr_pm'.equals(searchType)">
                                             --                             AND
-                                            WHERE pr_pm LIKE CONCAT('%', #{searchKeyword}, '%')
+                                            AND pr_pm LIKE CONCAT('%', #{searchKeyword}, '%')
                                             <choose>
                                                 <when test="startDate != '' and endDate == ''">
                                                     AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
@@ -94,7 +94,7 @@
                                         </when>
                                         <when test="'pr_client'.equals(searchType)">
                                             --                             AND
-                                            WHERE pr_client LIKE CONCAT('%', #{searchKeyword}, '%')
+                                            AND pr_client LIKE CONCAT('%', #{searchKeyword}, '%')
                                             <choose>
                                                 <when test="startDate != '' and endDate == ''">
                                                     AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
@@ -113,7 +113,7 @@
                                 </when>
                                 <!-- 검색 유형이 없을 때 -->
                                 <otherwise>
-                                WHERE
+                                AND
                                     (
                                     pr_name LIKE CONCAT('%', #{searchKeyword}, '%')
                                     OR pr_pm LIKE CONCAT('%', #{searchKeyword}, '%')
@@ -134,16 +134,16 @@
                         </choose>
                     </when>
                     <otherwise>
-                        WHERE
+
                         <choose>
                             <when test="startDate != '' and endDate == ''">
-                                DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
+                                AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
                             </when>
                             <when test="startDate == '' and endDate != ''">
-                                DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
+                                AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
                             </when>
                             <when test="startDate != '' and endDate != ''">
-                                DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
+                                AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
                             </when>
                         </choose>
                     </otherwise>

@@ -30,6 +30,8 @@ public class UserService {
         userMapper.createUser(employeeDTO);
     }
 
+//    회원 정보 수정
+    public static void updateUserInfo(employeeDto employeeDto) {userMapper.updateUserInfo(employeeDto);}
 
     //회원 정보 조회 (로그인)
     public User getLoginInfo(String id) {
