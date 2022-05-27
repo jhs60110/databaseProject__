@@ -88,14 +88,14 @@
                             <input type="text" name="searchKeyword" class="form-control" th:value="${params.searchKeyword}" />
                         </div>
 <!--                        날짜검색 시작-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="contain">시작일</label>-->
-<!--                            <input type="text" name="searchKeyword" class="form-control" th:value="${params.searchKeyword}" placeholder="YYYY-MM-DD 형식으로 입력해주세요."/>-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="contain">종료일</label>-->
-<!--                            <input type="text" name="searchKeyword" class="form-control" th:value="${params.searchKeyword}" placeholder="YYYY-MM-DD 형식으로 입력해주세요."/>-->
-<!--                        </div>-->
+                        <div class="form-group">
+                            <label for="contain">시작일</label>
+                            <input type="text" name="startDate" class="form-control" th:value="${params.startDate}" placeholder="YYYY-MM-DD 형식으로 입력해주세요."/>
+                        </div>
+                        <div class="form-group">
+                            <label for="contain">종료일</label>
+                            <input type="text" name="endDate" class="form-control" th:value="${params.endDate}" placeholder="YYYY-MM-DD 형식으로 입력해주세요."/>
+                        </div>
 <!--                        날짜검색 끝-->
                         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </form>

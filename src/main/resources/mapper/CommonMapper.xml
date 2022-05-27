@@ -61,14 +61,49 @@
                         <when test="'pr_name'.equals(searchType)">
                             --                             AND
                             WHERE pr_name LIKE CONCAT('%', #{searchKeyword}, '%')
+                            <choose>
+                                <when test="startDate != '' and endDate == ''">
+                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
+                                </when>
+                                <when test="startDate == '' and endDate != ''">
+                                    AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
+                                </when>
+                                <when test="startDate != '' and endDate != ''">
+                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
+                                </when>
+                            </choose>
+--                             AND pr_end_date = #{hello}
                         </when>
                         <when test="'pr_pm'.equals(searchType)">
                             --                             AND
                             WHERE pr_pm LIKE CONCAT('%', #{searchKeyword}, '%')
+                            <choose>
+                                <when test="startDate != '' and endDate == ''">
+                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
+                                </when>
+                                <when test="startDate == '' and endDate != ''">
+                                    AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
+                                </when>
+                                <when test="startDate != '' and endDate != ''">
+                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
+                                </when>
+                            </choose>
                         </when>
                         <when test="'pr_client'.equals(searchType)">
                             --                             AND
                             WHERE pr_client LIKE CONCAT('%', #{searchKeyword}, '%')
+                            <choose>
+                                <when test="startDate != '' and endDate == ''">
+                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
+                                </when>
+                                <when test="startDate == '' and endDate != ''">
+                                    AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
+                                </when>
+                                <when test="startDate != '' and endDate != ''">
+                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
+                                </when>
+                            </choose>
+
                         </when>
 
                     </choose>
@@ -81,11 +116,13 @@
                     pr_name LIKE CONCAT('%', #{searchKeyword}, '%')
                     OR pr_pm LIKE CONCAT('%', #{searchKeyword}, '%')
                     OR pr_client LIKE CONCAT('%', #{searchKeyword}, '%')
-
                     )
                 </otherwise>
             </choose>
         </if>
+<!--        <if test="searchKeyword == null or searchKeyword == ''">-->
+<!--            WHERE DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}-->
+<!--        </if>-->
     </sql>
 
 </mapper>
