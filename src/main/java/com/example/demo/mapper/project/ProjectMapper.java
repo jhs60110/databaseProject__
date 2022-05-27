@@ -23,7 +23,9 @@ public interface ProjectMapper {
     void createProject(ProjectDescr projectDescr);
 
     // project 리스트 받아오기
+
      List<ProjectDescr> getProjectList(ProjectDescr params);
 
     List<Participant> getEmplInProject(Participant push_pr_id);
+
 }
