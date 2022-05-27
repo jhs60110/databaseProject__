@@ -1422,7 +1422,7 @@ textarea.form-control {
 }
 
 @media screen and (min-width: 768px) {
-  #adv-search, #project-search {
+  #adv-search, #project-search, #projectT-search {
     width: 500px;
     margin: 0 auto;
   }

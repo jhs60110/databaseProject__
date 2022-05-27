@@ -1,64 +1,73 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/basic}"
->
+      layout:decorate="~{layout/basic}">
+
 <th:block layout:fragment="title">
-    <title>This page is a termination project page</title>
+    <title>This page is an ended project page</title>
 </th:block>
 
-<th:block layout:fragment="searchProject">
-    <div th:replace="fragments/common :: searchProject"></div>
+<th:block layout:fragment="search">
+    <a href="/project/projectTermination">
+        <span>
+            <h2>종료된 프로젝트</h2>
+        </span>
+    </a>
+    <div th:replace="fragments/common :: searchProjectT"></div>
 </th:block>
 
 <th:block layout:fragment="content">
     <div class="table-responsive clearfix">
-        <H2>종료된 프로젝트</H2>
-        <br>
-        <table id="project_content">
-            <tr>
-                <td>
-                    <table id="static_table" border="1"
-                           class="table table-bordered table-striped">
-                        <thead>
-                        <!--종료된 프로젝트-->
-                        <tr>
-                            <th>프로젝트 이름</th>
-                            <th>시작일</th>
-                            <th>종료일</th>
-                            <th>PM</th>
-                            <th>고객사</th>
-                            <th>수주액</th>
-                            <th></th>
-                        </tr>
-                        <tr th:each="elem: ${ProjectDeT}">
-                            <td th:text="${elem.pr_name}"></td>
-                            <td th:text="${elem.pr_start_date}"></td>
-                            <td th:text="${elem.pr_end_date}"></td>
-                            <td th:text="${elem.pr_pm}"></td>
-                            <td th:text="${elem.pr_client}"></td>
-                            <td th:text="${elem.pr_price}"></td>
-                            <form method="get"th:action="@{project/projectDescription/${elem.pr_id}}" >
-                                <input type="hidden" th:value="${elem.pr_id}" name="pr_id">
-                            </form>
 
-                            <td>
-                                <button type="submit" class="pChoose"  th:value="${elem.pr_id}" th:id="|pChoose${elem.pr_id}|" >자세히</button>
-                            </td>
-                        </tr>
-                        </thead>
-                    </table>
-                </td>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>프로젝트 이름</th>
+                <th>시작일</th>
+                <th>종료일</th>
+                <th>pm</th>
+                <th>고객사</th>
+                <th>수주액</th>
+                <th></th>
             </tr>
+            </thead>
+            <tbody>
+            <!--            빈 프로젝트가 있는지 확인하는 부분-->
+
+            <tr th:each="elem: ${ProjectDeT}">
+                <td th:text="${elem.pr_name}"></td>
+                <td th:text="${elem.pr_start_date}"></td>
+                <td th:text="${elem.pr_end_date}"></td>
+                <td th:text="${elem.pr_pm}"></td>
+                <td th:text="${elem.pr_client}"></td>
+                <td th:text="${elem.pr_price}"></td>
+
+                <form method="get"th:action="@{project/projectDescription/${elem.pr_id}}" >
+                    <input type="hidden" th:value="${elem.pr_id}" name="pr_id">
+                </form>
+
+                <td>
+                    <button type="submit" class="pChoose"  th:value="${elem.pr_id}" th:id="|pChoose${elem.pr_id}|" >자세히</button>
+                </td>
+
+            </tr>
+            <tr th:unless="${not #lists.isEmpty( ProjectDeT )}">
+                <td colspan="6">조회된 결과가 없습니다.</td>
+            </tr>
+            </tbody>
         </table>
+
         <th:block layout:fragment="paging">
             <nav th:replace="fragments/common :: pagination"></nav>
         </th:block>
     </div>
+    <button onClick="location.href='/main'">진행중인 프로젝트 보기 </button>
 </th:block>
+
 
 </div>
 </body>
+
 <th:block layout:fragment="script">
     <script th:inline="javascript">
         /*<![CDATA[*/
@@ -67,7 +76,7 @@
             console.log(e.target.value);
             // const url = _ctx + "project/projectDescription/" + e.target.value;
             // window.location.href = url;
-            location.href="projectTDescription/"+e.target.value ;
+            location.href="project/projectDescription/"+e.target.value ;
 
         })
 
@@ -80,22 +89,26 @@
         function searchProject(form) {
             /*[- 드롭다운이 아닌 메인 검색 키워드로 검색했을 때 -]*/
             if (isEmpty(form) == true) {
-                var searchKeyword = document.getElementById("projectSearchKeyword");
+                var searchKeyword = document.getElementById("projectTSearchKeyword");
                 if (isEmpty(searchKeyword.value) == true) {
                     alert("키워드를 입력해 주세요.");
                     searchKeyword.focus();
                     return false;
                 }
 
-                form = document.getElementById("projectSearchForm");
+                form = document.getElementById("projectTSearchForm");
                 form.searchKeyword.value = searchKeyword.value;
                 form.submit();
             }
 
+            // 드롭박스에서 키워드 없을 경우
             if (isEmpty(form.searchKeyword.value) == true) {
-                alert("키워드를 입력해 주세요.");
-                form.searchKeyword.focus();
-                return false;
+                // 시작일, 종료일까지 없을 경우
+                if (isEmpty(form.startDate.value) == true && isEmpty(form.endDate.value) == true && isEmpty((form.searchKeyword.value) == true)) {
+                    alert("키워드를 입력해 주세요.");
+                    form.searchKeyword.focus();
+                    return false;
+                }
             }
         }
 

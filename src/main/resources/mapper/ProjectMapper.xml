@@ -19,11 +19,23 @@
         from project
         where pr_termination = 'N';
     </select>
+<!--    진행중인 프로젝트 리스트-->
     <select id="getProjectList" resultType="com.example.demo.model.project.ProjectDescr" parameterType="com.example.demo.model.project.ProjectDescr">
         SELECT *
         FROM project
         WHERE
         pr_termination = 'N'
+        <include refid="CommonMapper.projectSearch" />
+
+        ORDER BY pr_id ASC
+        <include refid="CommonMapper.paging" />
+    </select>
+<!--종료된 프로젝트 리스트-->
+    <select id="getProjectTList" resultType="com.example.demo.model.project.ProjectDescr" parameterType="com.example.demo.model.project.ProjectDescr">
+        SELECT *
+        FROM project
+        WHERE
+        pr_termination = 'Y'
         <include refid="CommonMapper.projectSearch" />
 
         ORDER BY pr_id ASC
@@ -35,6 +47,14 @@
         FROM project
         WHERE
         pr_termination = 'N'
+        <include refid="CommonMapper.projectSearch" />
+    </select>
+
+    <select id="getProjectTTotalCount" resultType="int" parameterType="com.example.demo.model.project.ProjectDescr">
+        SELECT COUNT(*)
+        FROM project
+        WHERE
+        pr_termination = 'Y'
         <include refid="CommonMapper.projectSearch" />
     </select>
 
