@@ -77,8 +77,6 @@ public class mainController {
 
         model.addAttribute("ProjectDe", Project);
 
-
-
         return "project/projectShow";
     }
 

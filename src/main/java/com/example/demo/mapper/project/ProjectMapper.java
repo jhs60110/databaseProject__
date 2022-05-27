@@ -17,5 +17,5 @@ public interface ProjectMapper {
     void createProject(ProjectDescr projectDescr);
 
     // project 리스트 받아오기
-     List<ProjectDescr> getProjectList(ProjectDescr params);
+     public List<ProjectDescr> getProjectList(ProjectDescr params);
 }

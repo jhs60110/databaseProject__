@@ -24,6 +24,10 @@ public class Criteria {
     /** 검색 유형 */
     private String searchType;
 
+    private String startDate;
+
+    private String endDate;
+
     public Criteria() {
         this.currentPageNo = 1;
         this.recordsPerPage = 10;
@@ -38,6 +42,8 @@ public class Criteria {
                 .queryParam("pageSize", pageSize)
                 .queryParam("searchType", searchType)
                 .queryParam("searchKeyword", searchKeyword)
+                .queryParam("startDate", startDate)
+                .queryParam("endDate", endDate)
                 .build()
                 .encode();
 
