@@ -24,10 +24,6 @@ public class UserController {
     private Logger logger = LoggerFactory.getLogger(UserController.class);
     private static UserService userService;
     private static UserDetailServiceImp userDetailServiceImp;
-//<<<<<<< HEAD
-//    //  private static EstimateService estimateService;
-//=======
-//>>>>>>> c7f07dcced6e59cf813cc75cf88c5b129d8fd97c
 
     @Autowired
     public UserController(UserService userService,
@@ -49,21 +45,12 @@ public class UserController {
     public String signin(Model model, String id) {
         User user = (User) userDetailServiceImp.loadUserByUsername(id);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//<<<<<<< HEAD
-//        if(authentication!=null){
-//            User userRole = (User) authentication.getPrincipal();
-//
-//            logger.info("Login id signIn : {}", authentication);
-//        }else{
-//            logger.info("signIn : authentication NULL" );
-//=======
         if (authentication != null) {
             User userRole = (User) authentication.getPrincipal();
 
             logger.info("Login id signIn : {}", authentication);
         } else {
             logger.info("signIn : authentication NULL");
-//>>>>>>> c7f07dcced6e59cf813cc75cf88c5b129d8fd97c
         }
         model.addAttribute("LoginErrorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.");
         logger.info("Login id : {}", user.getId());
@@ -71,38 +58,12 @@ public class UserController {
 
         return "/signIn";
     }
-    //<<<<<<< HEAD
-//    //메인페이지 이동(로그인 성공 시 메인페이지로 이동)
-////    @PostMapping("/main")
-////    public String loginSuccess(Model model, @PathVariable String id) {
-////        employeeDto userInfo = userService.getUserInfo(id);
-////        model.addAttribute("userInfo", userInfo);
-////      //  User user = (User) userDetailServiceImp.loadUserByUsername(emailAddress);
-////        return "redirect:/main";
-////    }
-//=======
-//
-//>>>>>>> c7f07dcced6e59cf813cc75cf88c5b129d8fd97c
     @PostMapping("/main")
     public String loginSuccess(Model model, String id) {
         logger.info("로그인성공 메인으로 돌아감");
         User user = (User) userDetailServiceImp.loadUserByUsername(id);
         return "redirect:/main";
     }
-//<<<<<<< HEAD
-//
-////        userService.createUser(requestDto);
-////        if (requestDto.getSuccessYN().equals("Y")) {
-////            logger.debug("errorMessage : {}", requestDto.getErrorMessage());
-////            return "redirect:/login";
-////        } else {
-////            logger.debug("errorMessage : {}", requestDto.getErrorMessage());
-////            model.addAttribute("checkEmailDup", "이미 가입된 이메일입니다.");
-////            return "/auth/signUp";
-////        }
-//
-//}
-//=======
 
     @GetMapping("/myPage")
     public String myPage(Model model, String id) {
@@ -110,22 +71,34 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         String userName = user.getE_name();
-        Long userEid = user.getE_id();
+        String userEid = user.getE_id().toString();
         logger.info("userEid {}", userEid);
         logger.info("userName {}", userName);
-        model.addAttribute("userName", userName);
-        model.addAttribute("userEid", userEid);
-        model.addAttribute("user", user);
-//        User user = (User) userDetailServiceImp.loadUserByUsername(id);
+        employeeDto employeeDto = userService.getUserInfo(userEid);
+        model.addAttribute("user", employeeDto);
 
         return "user/myPage";
     }
     @GetMapping("/editMyPage")
-    public String editMyPage () {
+    public String editMyPage (Model model) {
         logger.info("마이페이지 수정");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        String userName = user.getE_name();
+        String userEid = user.getE_id().toString();
+        logger.info("userEid {}", userEid);
+        logger.info("userName {}", userName);
+        employeeDto employeeDto = userService.getUserInfo(userEid);
+        model.addAttribute("user", employeeDto);
+
         return "user/editMyPage";
     }
+
+    @PostMapping("/editMyPage")
+    public String editMyPage (employeeDto employeeDto) {
+        userService.updateUserInfo(employeeDto);
+        logger.info("마이페이지 수정 완료");
+
+        return "redirect:/user/myPage";
+    }
 }
-
-
-//>>>>>>> c7f07dcced6e59cf813cc75cf88c5b129d8fd97c

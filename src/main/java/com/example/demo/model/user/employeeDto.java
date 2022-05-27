@@ -29,7 +29,7 @@ import lombok.Setter;
 @Setter
 public class employeeDto extends CommonDTO {
 
-    private String residentNum;
+//    private String residentNum;
     private String role;
     private String e_name;
     private String resident_num;
@@ -48,13 +48,15 @@ public class employeeDto extends CommonDTO {
         this.e_id = e_id;
     }
 
-    public String getResidentNum() {
-        return residentNum;
-    }
-
-    public void setResidentNum(String residentNum) {
-        this.residentNum = residentNum;
-    }
+//    public String getResidentNum() {
+//        return residentNum;
+//    }
+//    public void setResidentNum(String residentNum) {
+//        this.residentNum = residentNum;
+//    }
+//    public void setResidentNum(String residentNum) {
+//        this.resident_num = residentNum;
+//    }
 
 
     public String getRole() {

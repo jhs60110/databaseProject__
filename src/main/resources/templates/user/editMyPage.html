@@ -3,15 +3,104 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/base}"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">xd
+      layout:decorate="~{/layout/base}">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>마이페이지 수정</title>
+    <style>
+        body, html {
+            height: 100%;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+        }
+    </style>
 </head>
-<body>
 <div layout:fragment="page_content" id="page_content">
-    <h2>마이페이지 수정</h2>
+    <div class="container">
+        <br>
+        <br>
+        <div class="row">
+
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form th:action="@{/user/editMyPage}" th:method="post">
+                                    <div class="form-group row">
+                                        <label for="e_id" class="col-4 col-form-label">사번</label>
+                                        <div class="col-8">
+                                            <input id="e_id" name="e_id" class="form-control here"
+                                                   type="text" required="required" th:value="${user.getE_id()}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="e_name" class="col-4 col-form-label">이름</label>
+                                        <div class="col-8">
+                                            <input id="e_name" name="e_name" class="form-control here"
+                                                   type="text" required="required" th:value="${user.getE_name()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="resident_num" class="col-4 col-form-label">주민등록번호</label>
+                                        <div class="col-8">
+                                            <input id="resident_num" name="resident_num" class="form-control here"
+                                                   type="text" required="required" th:value="${user.getResident_num()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="academic_level" class="col-4 col-form-label">학력</label>
+                                        <div class="col-8">
+                                            <input id="academic_level" name="academic_level" class="form-control here"
+                                                   type="text" required="required" th:value="${user.getAcademic_level()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="role" class="col-4 col-form-label">직급</label>
+                                        <div class="col-8">
+                                            <input id="role" name="role" class="form-control here"
+                                                   type="text" required="required" th:value="${user.getRole()}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="id" class="col-4 col-form-label">아이디</label>
+                                        <div class="col-8">
+                                            <input id="id" name="id" class="form-control here" type="text"
+                                                   required="required" th:value="${user.getId()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="password" class="col-4 col-form-label">비밀번호</label>
+                                        <div class="col-8">
+                                            <input id="password" name="password" class="form-control here" type="text"
+                                                   required="required" th:value="${user.getPassword()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="department" class="col-4 col-form-label">부서</label>
+                                        <div class="col-8">
+                                            <input id="department" name="department" class="form-control here" type="text"
+                                                   required="required" th:value="${user.getDepartment()}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-4 col-8">
+                                            <button id="projectInsert" name="submit" type="submit"
+                                                    class="btn btn-primary">수정완료
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</body>
+<div layout:fragment="script_area">
+    <script th:src="@{/js/auth/myPage/edit.js}"></script>
+</div>
 </html>
