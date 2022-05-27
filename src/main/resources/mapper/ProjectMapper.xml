@@ -24,6 +24,7 @@
         FROM project
         --         WHERE
         <include refid="CommonMapper.projectSearch" />
+
         ORDER BY pr_id ASC
         <include refid="CommonMapper.paging" />
     </select>
@@ -34,5 +35,22 @@
         --         WHERE
         <include refid="CommonMapper.projectSearch" />
     </select>
+
+    <select id="getAProject" resultType="ProjectDescr" parameterType="String" statementType="CALLABLE">
+        select *
+        from project
+        where pr_id = #{pr_id};
+    </select>
+
+    <select id="getEmplInProject" resultType="Participant" parameterType="String" statementType="CALLABLE">
+
+        { CALL selectEmplInProject(
+                #{pr_id}
+
+            )
+            }
+
+    </select>
+
 </mapper>
 

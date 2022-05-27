@@ -38,9 +38,12 @@
                             <td th:text="${elem.pr_pm}"></td>
                             <td th:text="${elem.pr_client}"></td>
                             <td th:text="${elem.pr_price}"></td>
+                            <form method="get"th:action="@{project/projectDescription/${elem.pr_id}}" >
+                                <input type="hidden" th:value="${elem.pr_id}" name="pr_id">
+                            </form>
+
                             <td>
-                                <button class="pChoose" th:value="${elem.pr_id}" th:id="|pChoose${elem.pr_id}|">자세히
-                                </button>
+                                <button type="submit" class="pChoose"  th:value="${elem.pr_id}" th:id="|pChoose${elem.pr_id}|" >자세히</button>
                             </td>
                         </tr>
                         </thead>
@@ -62,7 +65,39 @@
 
         $('.pChoose').on('click', (e) => {
             console.log(e.target.value);
+            // const url = _ctx + "project/projectDescription/" + e.target.value;
+            // window.location.href = url;
+            location.href="projectTDescription/"+e.target.value ;
+
         })
+
+        // ${"#submitPr_id"}.attr("action",'');
+
+        function movePage(uri, queryString) {
+            location.href = uri + queryString;
+        }
+
+        function searchProject(form) {
+            /*[- 드롭다운이 아닌 메인 검색 키워드로 검색했을 때 -]*/
+            if (isEmpty(form) == true) {
+                var searchKeyword = document.getElementById("projectSearchKeyword");
+                if (isEmpty(searchKeyword.value) == true) {
+                    alert("키워드를 입력해 주세요.");
+                    searchKeyword.focus();
+                    return false;
+                }
+
+                form = document.getElementById("projectSearchForm");
+                form.searchKeyword.value = searchKeyword.value;
+                form.submit();
+            }
+
+            if (isEmpty(form.searchKeyword.value) == true) {
+                alert("키워드를 입력해 주세요.");
+                form.searchKeyword.focus();
+                return false;
+            }
+        }
 
     </script>
 </th:block>

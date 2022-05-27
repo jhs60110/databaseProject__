@@ -11,6 +11,7 @@
 
     <!-- MySQL 검색 -->
     <sql id="search">
+
         <!-- 검색 키워드가 있을 때 -->
         <if test="searchKeyword != null and searchKeyword != ''">
             <choose>

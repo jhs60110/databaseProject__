@@ -1,5 +1,6 @@
 package com.example.demo.controller.project;
 
+import com.example.demo.model.project.Participant;
 import com.example.demo.model.project.ProjectDescr;
 import com.example.demo.model.project.ProjectTDescr;
 import com.example.demo.model.user.User;
@@ -10,12 +11,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -33,7 +31,7 @@ public class projectController {
     }
 
     @GetMapping("/projectShow")
-    public String project(@ModelAttribute("params") ProjectDescr params,  Model model) {
+    public String project(@ModelAttribute("params") ProjectDescr params, Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
@@ -59,20 +57,43 @@ public class projectController {
 
     @GetMapping("/projectInsert")
     public String projectInsertPage(Model model) {
-//        logger.info("ProjectDe:{}", Project);
         return "/project/projectInsert";
     }
 
     @GetMapping("/projectTermination")
     public String projectTermination(Model model) {
-//        String userRole = user.getRole();
-//        model.addAttribute("userRole", userRole);
-
-
-
         List<ProjectTDescr> ProjectT = projectTService.selectTProject();
 
         model.addAttribute("ProjectDeT", ProjectT);
         return "/project/projectTermination";
     }
+
+
+    @GetMapping("/projectDescription/{pr_id}")
+    public String projectDescriptionPage(Model model, @PathVariable String pr_id, @ModelAttribute("params") ProjectDescr params,  @ModelAttribute("push_pr_id") Participant push_pr_id) {
+
+        List<Participant> emplInProject = ProjectService.getEmplInProject(push_pr_id);
+        model.addAttribute("emplInProject", emplInProject);
+
+        List<ProjectDescr> AProject = ProjectService.getAProject(params);
+        model.addAttribute("AProject", AProject);
+//
+//        List<ProjectTDescr> ATProject = ProjectTService.getATProject(Tparams);
+//        model.addAttribute("ATProject", ATProject);
+
+
+        return "project/projectDescription";
+    }
+    @GetMapping("/projectTDescription/{pr_id}")
+    public String projectTDescriptionPage(Model model, @PathVariable String pr_id,  @ModelAttribute("params") ProjectTDescr params,@ModelAttribute("push_pr_id") Participant push_pr_id) {
+
+        List<Participant> emplInProject = ProjectService.getEmplInProject(push_pr_id);
+        model.addAttribute("emplInProject", emplInProject);
+                List<ProjectTDescr> ATProject = ProjectTService.getATProject(params);
+        model.addAttribute("ATProject", ATProject);
+
+
+        return "project/projectTDescription";
+    }
+
 }

@@ -1,7 +1,9 @@
 package com.example.demo.service.project;
 
 import com.example.demo.mapper.project.ProjectMapper;
+import com.example.demo.model.project.Participant;
 import com.example.demo.model.project.ProjectDescr;
+import com.example.demo.model.user.User;
 import com.example.demo.model.user.employeeDto;
 import com.example.demo.paging.PaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,17 @@ public class ProjectService {
     public ProjectService(ProjectMapper projectMapper) {
         this.projectMapper = projectMapper;
     }
+
+    public static List<ProjectDescr> getAProject(ProjectDescr projectDescr) {
+        return projectMapper.getAProject(projectDescr);
+
+    }
+
+    public static List<Participant> getEmplInProject(Participant participant) {
+//        return projectMapper.getEmplInProject(participant);
+        return projectMapper.getEmplInProject(participant);
+    }
+
 
     public List<ProjectDescr> selectNTProject(ProjectDescr params) {
         return projectMapper.selectNTProject();

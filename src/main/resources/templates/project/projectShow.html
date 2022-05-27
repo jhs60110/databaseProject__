@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/basic}"
->
+      layout:decorate="~{layout/basic}">
+
 <th:block layout:fragment="title">
     <title>This page is a project page</title>
 </th:block>
-
-<!--<th:block layout:fragment="search">-->
-<!--    <div th:replace="fragments/common :: search"></div>-->
-<!--</th:block>-->
 
 <th:block layout:fragment="search">
     <div th:replace="fragments/common :: searchProject"></div>
@@ -18,6 +14,7 @@
 <th:block layout:fragment="content">
     <div class="table-responsive clearfix">
         <h2>진행중인 프로젝트</h2>
+
         <table class="table table-hover">
             <thead>
             <tr>
@@ -40,9 +37,15 @@
                 <td th:text="${elem.pr_pm}"></td>
                 <td th:text="${elem.pr_client}"></td>
                 <td th:text="${elem.pr_price}"></td>
+
+                <form method="get"th:action="@{project/projectDescription/${elem.pr_id}}" >
+                <input type="hidden" th:value="${elem.pr_id}" name="pr_id">
+                </form>
+
                 <td>
-                    <button class="pChoose"  th:value="${elem.pr_id}" th:id="|pChoose${elem.pr_id}|" >자세히</button>
+                    <button type="submit" class="pChoose"  th:value="${elem.pr_id}" th:id="|pChoose${elem.pr_id}|" >자세히</button>
                 </td>
+
             </tr>
             <tr th:unless="${not #lists.isEmpty( ProjectDe )}">
                 <td colspan="6">조회된 결과가 없습니다.</td>
@@ -54,7 +57,6 @@
             <nav th:replace="fragments/common :: pagination"></nav>
         </th:block>
     </div>
-
     <button onClick="location.href='project/projectTermination'">종료된 프로젝트 보기 </button>
 </th:block>
 
@@ -68,8 +70,13 @@
 
         $('.pChoose').on('click', (e) => {
             console.log(e.target.value);
+            // const url = _ctx + "project/projectDescription/" + e.target.value;
+            // window.location.href = url;
+            location.href="project/projectDescription/"+e.target.value ;
+
         })
 
+        // ${"#submitPr_id"}.attr("action",'');
 
         function movePage(uri, queryString) {
             location.href = uri + queryString;
@@ -97,8 +104,6 @@
             }
         }
 
-        /*[- end of function -]*/
-        /*]]>*/
     </script>
 </th:block>
 </html>

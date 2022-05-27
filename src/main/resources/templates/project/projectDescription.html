@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/base}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block>
+        <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}">
+    </th:block>
+</head>
+<body>
+<div layout:fragment="page_content" id="page_content">
+    <div class="container">
+        <div class="content">
+            <h2>진행중인 프로젝트</h2>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>프로젝트 이름</th>
+                    <th>시작일</th>
+                    <th>종료일</th>
+                    <th>pm</th>
+                    <th>고객사</th>
+                    <th>수주액</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <!--            빈 프로젝트가 있는지 확인하는 부분-->
+
+                <tr th:each="elem: ${AProject}">
+                    <td th:text="${elem.pr_name}"></td>
+                    <td th:text="${elem.pr_start_date}"></td>
+                    <td th:text="${elem.pr_end_date}"></td>
+                    <td th:text="${elem.pr_pm}"></td>
+                    <td th:text="${elem.pr_client}"></td>
+                    <td th:text="${elem.pr_price}"></td>
+
+                </tr>
+
+                <tr th:unless="${not #lists.isEmpty( AProject )}">
+                    <td colspan="6">조회된 결과가 없습니다.</td>
+                </tr>
+                </tbody>
+            </table>
+            <h2>프로젝트 참여직원</h2>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>사원번호</th>
+                    <th>사원이름</th>
+                    <th>업무 내용</th>
+                    <th>착수일자</th>
+                    <th>종료일자</th>
+                    <th>직무</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <!--           사원데이터-->
+
+                <tr th:each="elem: ${emplInProject}">
+                    <td th:text="${elem.e_id}"></td>
+                    <td th:text="${elem.e_name}"></td>
+                    <td th:text="${elem.p_description}"></td>
+                    <td th:text="${elem.p_start_date}"></td>
+                    <td th:text="${elem.p_end_date}"></td>
+                    <td th:text="${elem.p_role}"></td>
+
+                </tr>
+
+                <tr th:unless="${not #lists.isEmpty( emplInProject )}">
+                    <td colspan="6">조회된 결과가 없습니다.</td>
+                </tr>
+                </tbody>
+            </table>
+
+<!--            <th:block layout:fragment="paging">-->
+<!--                <nav th:replace="fragments/common :: pagination"></nav>-->
+<!--            </th:block>-->
+
+
+            <button onClick="location.href='project/projectTermination'">종료된 프로젝트 보기 </button>
+
+
+        </div>
+    </div>
+</div>
+</body>
+
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        $('.pChoose').on('click', (e) => {
+            console.log(e.target.value);
+            // const url = _ctx + "project/projectDescription/" + e.target.value;
+            // window.location.href = url;
+            location.href="/projectDescription/"+e.target.value ;
+
+        })
+
+
+        function movePage(uri, queryString) {
+            location.href = uri + queryString;
+        }
+
+        function searchProject(form) {
+            /*[- 드롭다운이 아닌 메인 검색 키워드로 검색했을 때 -]*/
+            if (isEmpty(form) == true) {
+                var searchKeyword = document.getElementById("projectSearchKeyword");
+                if (isEmpty(searchKeyword.value) == true) {
+                    alert("키워드를 입력해 주세요.");
+                    searchKeyword.focus();
+                    return false;
+                }
+
+                form = document.getElementById("projectSearchForm");
+                form.searchKeyword.value = searchKeyword.value;
+                form.submit();
+            }
+
+            if (isEmpty(form.searchKeyword.value) == true) {
+                alert("키워드를 입력해 주세요.");
+                form.searchKeyword.focus();
+                return false;
+            }
+        }
+
+    </script>
+</th:block>
+</html>

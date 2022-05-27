@@ -5,4 +5,10 @@
     <select id="selectTProject" resultType="ProjectTDescr"  parameterType="String" statementType="CALLABLE">
         select * from project where pr_termination = 'Y';
     </select>
+
+    <select id="getATProject" resultType="ProjectTDescr" parameterType="String" statementType="CALLABLE">
+        select *
+        from project
+        where pr_id = #{pr_id};
+    </select>
 </mapper>
