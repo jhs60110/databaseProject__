@@ -92,10 +92,14 @@
                 form.submit();
             }
 
+            // 드롭박스에서 키워드 없을 경우
             if (isEmpty(form.searchKeyword.value) == true) {
-                alert("키워드를 입력해 주세요.");
-                form.searchKeyword.focus();
-                return false;
+                // 시작일, 종료일까지 없을 경우
+                if (isEmpty(form.startDate.value) == true && isEmpty(form.endDate.value) == true && isEmpty((form.searchKeyword.value) == true)) {
+                    alert("키워드를 입력해 주세요.");
+                    form.searchKeyword.focus();
+                    return false;
+                }
             }
         }
 
