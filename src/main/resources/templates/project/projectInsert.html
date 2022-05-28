@@ -72,18 +72,21 @@
                                                    maxlength="10" required="required">
                                         </div>
                                     </div>
-<!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-<!--사원 추가를 여기에 해야하나 고민중입니다.-->
-<!--                                    <div class="form-group row">-->
-<!--                                        <label for="pr_price" class="col-4 col-form-label">수주액</label>-->
-<!--                                        <div class="col-8">-->
-<!--                                            <input id="pr_price" name="pr_price" class="form-control here" type="text"-->
-<!--                                                   maxlength="10" required="required">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
 
+                                    <div class="form-group row">
+                                        <label for="inputEmployee" class="col-4 col-form-label">참여직원</label>
+                                        <div class="col-8" id="inputEmployee">
+                                            <input id="jj" type="text" th:value="ㄴ">
+<!--                                            <p  th:if="${not #strings.isEmpty(employeeDto)}"  th:text="${employeeDto.getE_id()}"></p>-->
 
-<!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;            -->
+<!--                                            <input id="inputEmployee" name="inputEmployee" class="form-control here" type="text"-->
+<!--                                                  required="required">-->
+                                        </div>
+                                        <button id="add" >추가</button>
+
+<!--                                        <button  onclick="add8()">보기</button>-->
+                                    </div>
+
                                     <div class="form-group row">
                                         <div class="offset-4 col-8">
                                             <button id="projectInsert" name="submit" type="submit"
@@ -104,6 +107,12 @@
     <!--    </div>-->
 </div>
 <div layout:fragment="script_area">
-    <script th:src="@{/js/auth/myPage/edit.js}"></script>
+<!--    <script th:src="@{/js/auth/myPage/edit.js}"></script>-->
+    <script th:src="@{/js/projectInsert.js}"></script>
+<!--    function addInput(){-->
+<!--    window.open("employeeList.html","팝업 테스트","width=400, height=300, top=10, left=10");-->
+<!--    }-->
+
 </div>
+
 </html>

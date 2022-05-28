@@ -29,6 +29,11 @@ public class UserService {
     public static void createUser(employeeDto employeeDTO) {
         userMapper.createUser(employeeDTO);
     }
+    //회원 정보 조회(마이페이지, 통계페이지)
+    public static employeeDto getUserInfo(String userID) {
+
+        return userMapper.getUserInfo(userID);
+    } //이거 왜 안쓰니..?.?.?...?
 
 //    회원 정보 수정
     public static void updateUserInfo(employeeDto employeeDto) {userMapper.updateUserInfo(employeeDto);}
@@ -68,10 +73,6 @@ public class UserService {
         }
     }
 
-    //회원 정보 조회(마이페이지, 통계페이지)
-    public employeeDto getUserInfo(String userID) {
-        return userMapper.getUserInfo(userID);
-    } //이거 왜 안쓰니..?.?.?...?
 
 
 }

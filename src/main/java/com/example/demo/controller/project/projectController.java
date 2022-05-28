@@ -4,8 +4,11 @@ import com.example.demo.model.project.Participant;
 import com.example.demo.model.project.ProjectDescr;
 import com.example.demo.model.project.ProjectTDescr;
 import com.example.demo.model.user.User;
+import com.example.demo.model.user.employeeDto;
+import com.example.demo.service.EmployeeService;
 import com.example.demo.service.project.ProjectService;
 import com.example.demo.service.project.ProjectTService;
+import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,14 +23,16 @@ import java.util.List;
 @Controller
 @RequestMapping("/project")
 public class projectController {
+    private final EmployeeService employeeService;
     private Logger logger = LoggerFactory.getLogger(projectController.class);
     private static ProjectService projectService;
     private static ProjectTService projectTService;
-
+ 
     @Autowired
-    public projectController(ProjectService projectService, ProjectTService projectTService) {
+    public projectController(ProjectService projectService, ProjectTService projectTService, EmployeeService employeeService) {
         this.projectService = projectService;
         this.projectTService = projectTService;
+        this.employeeService = employeeService;
     }
 
     @GetMapping("/projectShow")
@@ -52,15 +57,30 @@ public class projectController {
         ProjectService.createProject(projectDescr);
         System.out.println(projectDescr);
 
+
+
         return "redirect:/";
     }
 
-    @GetMapping("/projectInsert")
-    public String projectInsertPage(Model model) {
-        return "/project/projectInsert";
-    }
-    
+    @PostMapping("/projectInsert")
+//    @RequestMapping(value="/projectInsert", method=RequestMethod.POST)
+    public String projectInsertPage(Model model,@ModelAttribute("e_id") employeeDto e_id) {
+        employeeDto employeeDto = UserService.getUserInfo(String.valueOf(e_id));
+        logger.info("employeeDto: {}", employeeDto);
+        model.addAttribute("employeeDto", employeeDto);
 
+        return "project/projectInsert";
+    }
+
+    @GetMapping("/projectInsert")
+//    @RequestMapping(value="/projectInsert", method=RequestMethod.POST)
+    public String projectInsertPage0(Model model,@ModelAttribute("e_id") employeeDto e_id) {
+        employeeDto employeeDto = UserService.getUserInfo(String.valueOf(e_id));
+        logger.info("employeeDto: {}", employeeDto);
+        model.addAttribute("employeeDto", employeeDto);
+
+        return "project/projectInsert";
+    }
     @GetMapping("/projectTermination")
     public String successLogin(@ModelAttribute("params") ProjectDescr params, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -106,5 +126,22 @@ public class projectController {
 
         return "project/projectTDescription";
     }
+
+
+
+    @GetMapping(value = "/employee/list")
+    public String openEmployeeList(@ModelAttribute("params") employeeDto params, Model model) {
+        List<employeeDto> employeeList = employeeService.getEmployeeList(params);
+        model.addAttribute("employeeList", employeeList);
+
+
+
+
+
+
+        return "popUpMakeProjectEmployeeList";
+    }
+
+
 
 }
