@@ -2,6 +2,7 @@ package com.example.demo.service.user;
 
 import com.example.demo.mapper.user.UserMapper;
 import com.example.demo.model.user.Role;
+import com.example.demo.model.user.SkillSetDto;
 import com.example.demo.model.user.User;
 import com.example.demo.model.user.employeeDto;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -33,10 +35,54 @@ public class UserService {
     public static employeeDto getUserInfo(String userID) {
 
         return userMapper.getUserInfo(userID);
-    } //이거 왜 안쓰니..?.?.?...?
+    }
 
 //    회원 정보 수정
     public static void updateUserInfo(employeeDto employeeDto) {userMapper.updateUserInfo(employeeDto);}
+
+//    회원 정보 수정(skill 수정)
+    public static void updateSkillSet(List languageList, List frameworkList, String e_id){
+        userMapper.deleteSkillSet(e_id);
+        int num;
+        if (languageList.size() > frameworkList.size()) {
+            num = languageList.size();
+        } else {
+            num = frameworkList.size();
+        }
+        for (int i = 0; i < num; i++) {
+            try{
+                userMapper.insertSkillSet((String) languageList.get(i), (String) frameworkList.get(i), e_id);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                if (num == languageList.size()) {
+                    userMapper.insertSkillSet((String) languageList.get(i), "", e_id);
+                } else {
+                    userMapper.insertSkillSet("", (String) frameworkList.get(i), e_id);
+                }
+            }
+        }
+    }
+
+    //    회원 정보 수정(career 수정)
+    public static void updateCareer(List caNameList, List caDescList, String e_id){
+        userMapper.deleteCareer(e_id);
+        int num;
+        if (caNameList.size() > caDescList.size()) {
+            num = caNameList.size();
+        } else {
+            num = caDescList.size();
+        }
+        for (int i = 0; i < num; i++) {
+            try{
+                userMapper.insertCareer((String) caNameList.get(i), (String) caDescList.get(i), e_id);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                if (num == caNameList.size()) {
+                    userMapper.insertCareer((String) caNameList.get(i), "", e_id);
+                } else {
+                    userMapper.insertCareer("", (String) caDescList.get(i), e_id);
+                }
+            }
+        }
+    }
 
     //회원 정보 조회 (로그인)
     public User getLoginInfo(String id) {
@@ -44,7 +90,6 @@ public class UserService {
         if (user != null) {
             logger.info("-------user not null-----");
             logger.info("login userID : {}", user.getId());
-//            logger.info("login check role : {}", user.getRole());
             if (user.getErrorCode() == null) {
                 user.setErrorCode("");
                 logger.info("login errorCode : {}", user.getErrorCode());

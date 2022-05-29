@@ -4,27 +4,6 @@ import com.example.demo.model.CommonDTO;
 import lombok.Getter;
 import lombok.Setter;
 
-
-//@Getter
-//@Setter
-//public class employeeDto extends CommonDTO {
-////    private String e_id;
-////    private String e_name;
-////    private String resident_num;
-////    private String academic_level;
-////    private String r_id;
-//    private String eId;
-//    private String eName;
-//    private String residentNum;
-//    private String academicLevel;
-//    private String role;
-//    private String id;
-//    private String password;
-//    private String department;
-//
-//    private String errorMessage;
-
-
 @Getter
 @Setter
 public class employeeDto extends CommonDTO {
@@ -39,6 +18,17 @@ public class employeeDto extends CommonDTO {
     private String password;
     private String department;
     private String errorMessage;
+
+//    =============================
+    private String s_id;
+
+    private String s_language;
+
+    private String s_framework;
+
+    private String ca_name;
+
+    private String ca_description;
 
     public String getE_id() {
         return e_id;
