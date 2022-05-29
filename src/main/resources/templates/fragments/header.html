@@ -1,19 +1,34 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:fragment="main-head">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:fragment="main-head">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--    <meta name="description" content="">-->
+    <!--    <meta name="author" content="">-->
 
+        <th:block layout:fragment="title"></th:block>
 
-    <th:block layout:fragment="title"></th:block>
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+        <link rel="stylesheet" th:href="@{/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css}" />
+        <th:block layout:fragment="add-css"></th:block>
 
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
-<!--    <link rel="stylesheet" th:href="@{../static/css/style.css}" />-->
-    <link rel="stylesheet" th:href="@{/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css}" />
-<!--    <link rel="stylesheet" th:href="@{../static/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css}" />-->
-    <th:block layout:fragment="add-css"></th:block>
-</head>
+        <meta name="context-path" th:content="@{/}"/>
+        <meta th:name="_csrf_token" th:content="${_csrf.token}"/>
+        <meta th:name="_csrf_header_name" th:content="${_csrf.headerName}"/>
+        <title sec:authorize="hasAnyRole('1')" layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">사원</title>
+        <title sec:authorize="hasAnyRole('2')" layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">경영진</title>
+
+<!--        &lt;!&ndash;브라우저 상단 탭 icon 지정&ndash;&gt;-->
+        <link rel="icon" type="image/png" th:href="@{/img/isms_logo.png}" sizes="32x32"/>
+        <link rel="icon" type="image/png" th:href="@{/img/isms_logo.png}" sizes="16x16"/>
+
+<!--        <link rel="stylesheet" th:href="@{/ext/bootstrap/css/bootstrap.min.css}">-->
+<!--        <link rel="stylesheet" th:href="@{/ext/font-awesome/css/all.min.css}">-->
+<!--        <link rel="stylesheet" th:href="@{/ext/sweetalert2/css/sweetalert2.min.css}">-->
+<!--        <link rel="stylesheet" th:href="@{/css/common/common.css}">-->
+    </head>
 </html>
