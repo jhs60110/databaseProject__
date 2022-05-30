@@ -3,9 +3,13 @@
 
 <mapper namespace="com.example.demo.mapper.user.CareerMapper">
     <select id="getCareerInfo" resultType="com.example.demo.model.user.CareerDto" parameterType="String">
-        SELECT *
-        FROM career
-        WHERE e_id = #{e_id}
+
+        select ca_id, e_id, a.e_name, academic_level, department,ca_name, ca_description
+        from (select e_name, academic_level, department
+              from employee
+              where e_id = #{e_id}) as a, career
+        where e_id = #{e_id}
+
     </select>
 
 </mapper>

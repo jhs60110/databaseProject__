@@ -59,6 +59,9 @@ public class EmployeeController {
 
         logger.info("e_id!!!!!!!!!!!!!!!!! {}", e_id);
 
+
+
+
         List<CareerDto> CareerDtoList = careerService.getCareerInfo(e_id);
         model.addAttribute("Career", CareerDtoList);
         logger.info("CareerDtoList!!!!!!!!!!!!!!!!! {}", CareerDtoList);
