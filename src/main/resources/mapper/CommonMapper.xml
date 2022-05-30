@@ -79,7 +79,7 @@
                                         </when>
                                         <when test="'pr_pm'.equals(searchType)">
                                             --                             AND
-                                            AND pr_pm LIKE CONCAT('%', #{searchKeyword}, '%')
+                                            AND e_name LIKE CONCAT('%', #{searchKeyword}, '%')
                                             <choose>
                                                 <when test="startDate != '' and endDate == ''">
                                                     AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
@@ -116,7 +116,7 @@
                                 AND
                                     (
                                     pr_name LIKE CONCAT('%', #{searchKeyword}, '%')
-                                    OR pr_pm LIKE CONCAT('%', #{searchKeyword}, '%')
+                                    OR e_name LIKE CONCAT('%', #{searchKeyword}, '%')
                                     OR pr_client LIKE CONCAT('%', #{searchKeyword}, '%')
                                     )
                                     <choose>

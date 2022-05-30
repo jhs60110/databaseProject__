@@ -25,21 +25,24 @@
     </select>
 <!--    진행중인 프로젝트 리스트-->
     <select id="getProjectList" resultType="com.example.demo.model.project.ProjectDescr" parameterType="com.example.demo.model.project.ProjectDescr">
-        SELECT *
-        FROM project
-        WHERE
-        pr_termination = 'N'
+--         SELECT *
+--         FROM project
+--         WHERE
+--         pr_termination = 'N'
+        SELECT pr_id, pr_name, pr_start_date, pr_end_date, pr_pm, pr_client, pr_price, e_name AS pr_pm_name
+        FROM project p
+        JOIN employee e ON p.pr_pm = e.e_id
+        AND pr_termination = 'N'
         <include refid="CommonMapper.projectSearch" />
-
         ORDER BY pr_id ASC
         <include refid="CommonMapper.paging" />
     </select>
 <!--종료된 프로젝트 리스트-->
     <select id="getProjectTList" resultType="com.example.demo.model.project.ProjectDescr" parameterType="com.example.demo.model.project.ProjectDescr">
-        SELECT *
-        FROM project
-        WHERE
-        pr_termination = 'Y'
+        SELECT pr_id, pr_name, pr_start_date, pr_end_date, pr_pm, pr_client, pr_price, e_name AS pr_pm_name
+        FROM project p
+        JOIN employee e ON p.pr_pm = e.e_id
+        AND pr_termination = 'Y'
         <include refid="CommonMapper.projectSearch" />
 
         ORDER BY pr_id ASC
@@ -48,7 +51,7 @@
 
     <select id="getProjectTotalCount" resultType="int" parameterType="com.example.demo.model.project.ProjectDescr">
         SELECT COUNT(*)
-        FROM project
+        FROM project p JOIN employee e ON p.pr_pm = e.e_id
         WHERE
         pr_termination = 'N'
         <include refid="CommonMapper.projectSearch" />
@@ -56,7 +59,7 @@
 
     <select id="getProjectTTotalCount" resultType="int" parameterType="com.example.demo.model.project.ProjectDescr">
         SELECT COUNT(*)
-        FROM project
+        FROM project p JOIN employee e ON p.pr_pm = e.e_id
         WHERE
         pr_termination = 'Y'
         <include refid="CommonMapper.projectSearch" />
@@ -102,8 +105,9 @@
     </update>
 
     <select id="getProjectById" parameterType="String" resultType="com.example.demo.model.project.ProjectDescr">
-        SELECT *
-        FROM PROJECT
+        SELECT pr_id, pr_name, pr_start_date, pr_end_date, pr_pm, pr_client, pr_price, e_name AS pr_pm_name
+        FROM project p
+        JOIN employee e ON p.pr_pm = e.e_id
         WHERE pr_id = #{pr_id}
         AND pr_termination = 'N'
     </select>
