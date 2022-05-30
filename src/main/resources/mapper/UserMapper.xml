@@ -98,13 +98,11 @@
     </insert>
 
 
-    <select  id="getAParticipant" resultType="String" parameterType="com.example.demo.model.project.Participant">
-    select *
-    from participant
-    where e_id = #{e_id}
+    <select id="getAParticipant" resultType="Participant" parameterType="String" statementType="CALLABLE">
+        select *
+        from participant
+        where e_id = #{e_id}
     </select>
-
-
 
 
 </mapper>

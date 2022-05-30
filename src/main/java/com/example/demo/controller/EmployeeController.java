@@ -63,7 +63,7 @@ public class EmployeeController {
 //        뭐 뭐 들어가야하지? 사원 e_id 받은거 넘겨서 출력된 거 model.addatr
 
         logger.info("e_id!!!!!!!!!!!!!!!!! {}", e_id);
-
+//
 //
 //        List<Participant> Participant= particiService.getParticipant(e_id);
 //        logger.info("Participant!!!!!!!!!!!!!!!!! {}", Participant);

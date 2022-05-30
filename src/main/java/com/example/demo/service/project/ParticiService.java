@@ -23,10 +23,10 @@ public class ParticiService {
         public ParticiService(ProjectEmplInsertMapper projectEmplInsertMapper) {
                 this.projectEmplInsertMapper = projectEmplInsertMapper;
         }
-//        public List<Participant> getParticipant(String e_id);
+
+//        public List<Participant> getParticipant(String e_id) {
 //
-//        public static List<Participant> getParticipant(Participant push_e_id) {
-//                return projectEmplInsertMapper.getAParticipant(String.valueOf(push_e_id));
+//                return ProjectEmplInsertMapper.getAParticipant(e_id);
 //        }
 
         public static List<Participant> getEmplInProject(Participant participant) {
