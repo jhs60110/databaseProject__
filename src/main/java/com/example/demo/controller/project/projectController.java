@@ -166,12 +166,12 @@ public class projectController {
     @PostMapping(value = "/projectEmploAppend/{pr_id}")
 
 
-    public String projectEmploAppenda(@RequestBody inparticipa requestDto) {
-
-        inparticipa inparticipa = SProjectEmplInsertService.projectEmpInsert(requestDto);
-
-        return "project/projectEmploAppend";
-    }
+//    public String projectEmploAppenda(@RequestBody inparticipa requestDto) {
+//
+//        inparticipa inparticipa = SProjectEmplInsertService.projectEmpInsert(requestDto);
+//
+//        return "project/projectEmploAppend";
+//    }
 
 
 
