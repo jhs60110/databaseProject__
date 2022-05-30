@@ -44,12 +44,12 @@ public class EmployeeController {
     }
 
 
-    //    사원
-    @GetMapping(value = "/employee")
-    public String openEmployee(Model model) {
-
-        return "employeeDescrip";
-    }
+//    //    사원
+//    @GetMapping(value = "/employee")
+//    public String openEmployee(Model model) {
+//
+//        return "employeeDescrip";
+//    }
 
 
     // 여기가 그 뭐냐 그 사원 기술스택 확인페이지임
@@ -67,6 +67,6 @@ public class EmployeeController {
         model.addAttribute("SkillSet", SkillSetDtoList);
         logger.info("SkillSetDtoList!!!!!!!!!!!!!!!!! {}", SkillSetDtoList);
 
-        return "project/employeeDescrip";
+        return "employeeDescrip";
     }
 }
