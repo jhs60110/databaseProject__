@@ -4,7 +4,7 @@
 <mapper namespace="com.example.demo.mapper.user.CareerMapper">
     <select id="getCareerInfo" resultType="com.example.demo.model.user.CareerDto" parameterType="String">
         SELECT *
-        FROM CAREER
+        FROM career
         WHERE e_id = #{e_id}
     </select>
 

@@ -4,9 +4,13 @@ import com.example.demo.model.project.Participant;
 import com.example.demo.model.project.ProjectDescr;
 import com.example.demo.model.project.ProjectTDescr;
 import com.example.demo.model.project.inparticipa;
+import com.example.demo.model.user.CareerDto;
+import com.example.demo.model.user.SkillSetDto;
 import com.example.demo.model.user.User;
 import com.example.demo.model.user.employeeDto;
+import com.example.demo.service.CareerService;
 import com.example.demo.service.EmployeeService;
+import com.example.demo.service.SkillSetService;
 import com.example.demo.service.project.ProjectService;
 import com.example.demo.service.project.ProjectTService;
 import com.example.demo.service.project.SProjectEmplInsertService;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -36,7 +41,11 @@ public class projectController {
         this.projectTService = projectTService;
         this.employeeService = employeeService;
     }
+    @Autowired
+    private SkillSetService skillSetService;
 
+    @Autowired
+    private CareerService careerService;
     @GetMapping("/projectShow")
     public String project(@ModelAttribute("params") ProjectDescr params, Model model) {
 
@@ -92,7 +101,6 @@ public class projectController {
         String userRole = user.getRole();
         model.addAttribute("userRole", userRole);
 
-
         List<ProjectDescr> Project = projectService.getProjectTList(params);
 
         model.addAttribute("ProjectDeT", Project);
@@ -101,7 +109,7 @@ public class projectController {
     }
 
     @GetMapping("/projectDescription/{pr_id}")
-    public String projectDescriptionPage(Model model, @PathVariable String pr_id, @ModelAttribute("params") ProjectDescr params, @ModelAttribute("push_pr_id") Participant push_pr_id) {
+    public String projectDescriptionPage(Model model, @PathVariable String pr_id, @ModelAttribute("params") ProjectDescr params, @ModelAttribute("") Participant push_pr_id) {
 
         List<Participant> emplInProject = ProjectService.getEmplInProject(push_pr_id);
         model.addAttribute("emplInProject", emplInProject);
@@ -146,12 +154,13 @@ public class projectController {
     @PostMapping(value = "/projectEmploAppend/{pr_id}")
     public String projectEmploAppenda(@RequestBody inparticipa requestDto) {
 
-
         inparticipa inparticipa = SProjectEmplInsertService.projectEmpInsert(requestDto);
-
-
 
         return "project/projectEmploAppend";
     }
+
+
+
+
 
 }

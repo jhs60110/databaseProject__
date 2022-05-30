@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CareerService {
     public List<CareerDto> getCareerInfo(String e_id);
+
+
 }
