@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/base}">
+
+<head>
+    <title>프로젝트 수정</title>
+    <style>
+        body, html {
+            height: 100%;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+        }
+    </style>
+</head>
+<div layout:fragment="page_content" id="page_content">
+    <div class="container" id="mypage-container">
+        <br>
+        <br>
+        <div class="row">
+
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form th:action="@{/project/projectUpdate/{path}(path=${pr_id})}" th:method="post">
+                                    <div class="form-group row">
+                                        <label for="pr_name" class="col-4 col-form-label">프로젝트 이름</label>
+                                        <div class="col-8">
+                                            <input id="pr_name" name="pr_name" class="form-control here"
+                                                   type="text" required="required" th:value="${projectDescr.getPr_name()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="pr_start_date" class="col-4 col-form-label">시작일</label>
+                                        <div class="col-8">
+                                            <input id="pr_start_date" name="pr_start_date" class="form-control here"
+                                                   type="text" required="required" th:value="${projectDescr.getPr_start_date()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="pr_end_date" class="col-4 col-form-label">종료일</label>
+                                        <div class="col-8">
+                                            <input id="pr_end_date" name="pr_end_date" class="form-control here"
+                                                   type="text" required="required" th:value="${projectDescr.getPr_end_date()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="pr_pm" class="col-4 col-form-label">PM</label>
+                                        <div class="col-8">
+                                            <input id="pr_pm" name="pr_pm" class="form-control here"
+                                                   type="text" required="required" th:value="${projectDescr.getPr_pm()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="pr_client" class="col-4 col-form-label">고객사</label>
+                                        <div class="col-8">
+                                            <input id="pr_client" name="pr_client" class="form-control here"
+                                                   type="text" required="required" th:value="${projectDescr.getPr_client()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="pr_price" class="col-4 col-form-label">수주액</label>
+                                        <div class="col-8">
+                                            <input id="pr_price" name="pr_price" class="form-control here" type="text"
+                                                   required="required" th:value="${projectDescr.getPr_price()}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="offset-4 col-8">
+                                            <button id="projectUpdate" name="submit" type="submit"
+                                                    class="btn btn-primary">수정완료
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

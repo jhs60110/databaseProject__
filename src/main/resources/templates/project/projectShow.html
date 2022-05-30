@@ -49,6 +49,9 @@
                 <td>
                     <button type="submit" class="pChoose"  th:value="${elem.pr_id}" th:id="|pChoose${elem.pr_id}|" >자세히</button>
                 </td>
+                <td>
+                    <a th:href="@{/project/projectUpdate/{path}(path = ${elem.pr_id})}">수정</a>
+                </td>
 
             </tr>
             <tr th:unless="${not #lists.isEmpty( ProjectDe )}">

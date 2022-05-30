@@ -2,6 +2,7 @@ package com.example.demo.mapper.project;
 
 import com.example.demo.model.project.Participant;
 import com.example.demo.model.project.ProjectDescr;
+import com.example.demo.model.project.ProjectTDescr;
 import com.example.demo.model.user.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -25,6 +26,10 @@ public interface ProjectMapper {
 
     void createProject(ProjectDescr projectDescr);
 
+    void updateProject(ProjectDescr projectDescr);
+
+    void updateProjectT(ProjectTDescr projectTDescr);
+
     void insertParticipant(Participant participant);
 
     // project 리스트 받아오기
@@ -33,6 +38,8 @@ public interface ProjectMapper {
 
      List<ProjectDescr> getProjectTList(ProjectDescr params);
 
-    List<Participant> getEmplInProject(Participant push_pr_id);
+     List<Participant> getEmplInProject(Participant push_pr_id);
+
+     ProjectDescr getProjectById(String pr_id);
 
 }

@@ -3,6 +3,7 @@ package com.example.demo.service.project;
 import com.example.demo.mapper.project.ProjectMapper;
 import com.example.demo.model.project.Participant;
 import com.example.demo.model.project.ProjectDescr;
+import com.example.demo.model.project.ProjectTDescr;
 import com.example.demo.model.user.User;
 import com.example.demo.model.user.employeeDto;
 import com.example.demo.paging.PaginationInfo;
@@ -32,6 +33,11 @@ public class ProjectService {
 
     }
 
+    public static ProjectDescr getProjectById(String pr_id) {
+        return projectMapper.getProjectById(pr_id);
+
+    }
+
     public static List<Participant> getEmplInProject(Participant participant) {
 //        return projectMapper.getEmplInProject(participant);
         return projectMapper.getEmplInProject(participant);
@@ -45,6 +51,16 @@ public class ProjectService {
     public static void createProject(ProjectDescr projectDescr) {
 
         projectMapper.createProject(projectDescr);
+    }
+
+    public static void updateProject(ProjectDescr projectDescr) {
+
+        projectMapper.updateProject(projectDescr);
+    }
+
+    public static void updateProjectT(ProjectTDescr projectDescr) {
+
+        projectMapper.updateProjectT(projectDescr);
     }
 
     public static void insertParticipant(Participant participant) {

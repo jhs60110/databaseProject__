@@ -2,16 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.mapper.project.ProjectMapper">
-    <insert id="createProject" parameterType="ProjectDescr" statementType="CALLABLE">
-        { CALL inputProject(
-                #{pr_name},
-                #{pr_start_date},
-                #{pr_end_date},
-                #{pr_pm},
-                #{pr_client},
-                #{pr_price}
-            )
-            }
+    <insert id="createProject" parameterType="ProjectDescr">
+        INSERT INTO PROJECT(pr_name, pr_start_date, pr_end_date, pr_pm, pr_client, pr_price, pr_termination)
+        VALUES (#{pr_name},
+            #{pr_start_date},
+            #{pr_end_date},
+            #{pr_pm},
+            #{pr_client},
+            #{pr_price},
+            'Y')
     </insert>
 
     <insert id="insertParticipant" parameterType="Participant">
@@ -79,5 +78,34 @@
 
     </select>
 
+    <update id="updateProject" parameterType="ProjectDescr">
+        UPDATE PROJECT
+        SET pr_name = #{pr_name},
+            pr_start_date = #{pr_start_date},
+            pr_end_date = #{pr_end_date},
+            pr_pm = #{pr_pm},
+            pr_client = #{pr_client},
+            pr_price = #{pr_price}
+        WHERE pr_id = #{pr_id}
+          AND pr_termination = 'N'
+    </update>
+
+    <update id="updateProjectT" parameterType="ProjectTDescr">
+        UPDATE PROJECT
+        SET pr_name = #{pr_name},
+            pr_start_date = #{pr_start_date},
+            pr_end_date = #{pr_end_date},
+            pr_pm = #{pr_pm},
+            pr_client = #{pr_client},
+            pr_price = #{pr_price}
+        WHERE pr_termination = 'Y'
+    </update>
+
+    <select id="getProjectById" parameterType="String" resultType="com.example.demo.model.project.ProjectDescr">
+        SELECT *
+        FROM PROJECT
+        WHERE pr_id = #{pr_id}
+        AND pr_termination = 'N'
+    </select>
 </mapper>
 
