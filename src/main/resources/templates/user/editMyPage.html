@@ -78,10 +78,43 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="department" class="col-4 col-form-label">부서</label>
+                                        <label for="s_language" class="col-4 col-form-label">언어</label>
                                         <div class="col-8">
-                                            <input id="department" name="department" class="form-control here" type="text"
-                                                   required="required" th:value="${user.getDepartment()}" readonly>
+                                            <input id="s_language" name="s_language" class="form-control here" type="text"
+                                                   th:value="${#strings.listJoin(languageList,', ')}">
+                                            <span class="sub-description">
+                                                * 항목은 ','로 구분해서 입력해주세요.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="s_framework" class="col-4 col-form-label">프레임워크</label>
+                                        <div class="col-8">
+                                            <input id="s_framework" name="s_framework" class="form-control here" type="text"
+                                                   th:value="${#strings.listJoin(frameworkList,', ')}">
+                                            <span class="sub-description">
+                                                * 항목은 ','로 구분해서 입력해주세요.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="ca_name" class="col-4 col-form-label">경력이름</label>
+                                        <div class="col-8">
+                                            <input id="ca_name" name="ca_name" class="form-control here" type="text"
+                                                   th:value="${#strings.listJoin(caNameList,', ')}">
+                                            <span class="sub-description">
+                                                * 항목은 ','로 구분해서 입력해주세요.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="ca_description" class="col-4 col-form-label">경력내용</label>
+                                        <div class="col-8">
+                                            <input id="ca_description" name="ca_description" class="form-control here" type="text"
+                                                   th:value="${#strings.listJoin(caDescList,', ')}">
+                                            <span class="sub-description">
+                                                * 항목은 ','로 구분해서 입력해주세요.
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="form-group row">

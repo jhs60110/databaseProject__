@@ -5,6 +5,7 @@ import com.example.demo.model.project.ProjectDescr;
 import com.example.demo.model.project.ProjectTDescr;
 import com.example.demo.model.user.User;
 import com.example.demo.model.user.employeeDto;
+import com.example.demo.service.SkillSetService;
 import com.example.demo.service.project.ProjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -111,10 +112,4 @@ public class mainController {
 
         return "myPage";
     }
-
-
-
-
-
-
 }

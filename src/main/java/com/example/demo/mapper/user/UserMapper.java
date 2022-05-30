@@ -1,5 +1,6 @@
 package com.example.demo.mapper.user;
 
+import com.example.demo.model.user.SkillSetDto;
 import com.example.demo.model.user.User;
 import com.example.demo.model.user.employeeDto;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,5 +30,16 @@ public interface UserMapper {
 
     //회원 정보 수정(마이페이지)
     public void updateUserInfo(employeeDto userInfoRequestDto);
+
+//    회원 정보 수정(skill 수정)
+    public void deleteSkillSet(String e_id);
+    public void insertSkillSet(@Param("language") String language, @Param("framework") String framework,
+                               @Param("e_id") String e_id);
+
+    //    회원 정보 수정(skill 수정)
+    public void deleteCareer(String e_id);
+    public void insertCareer(@Param("ca_name") String ca_name, @Param("ca_description") String ca_description,
+                               @Param("e_id") String e_id);
+
 }
 
