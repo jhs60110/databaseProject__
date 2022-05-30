@@ -68,7 +68,12 @@
             </tr>
             <tr>
                 <td th:text="학력"></td>
-                <td th:text="${user.getAcademic_level()}"></td>
+<!--                <td th:text="${user.getAcademic_level()}"></td>-->
+                <td th:if="${user.getAcademic_level().equals('1')}" th:text="고졸"></td>
+                <td th:if="${user.getAcademic_level().equals('2')}" th:text="전문학사"></td>
+                <td th:if="${user.getAcademic_level().equals('3')}" th:text="학사"></td>
+                <td th:if="${user.getAcademic_level().equals('4')}" th:text="석사"></td>
+                <td th:if="${user.getAcademic_level().equals('5')}" th:text="박사"></td>
             </tr>
             <tr>
                 <td th:text="직급"></td>
@@ -91,50 +96,25 @@
                 <td th:if="${user.getDepartment().equals('22')}" th:text="연구개발"></td>
                 <td th:if="${user.getDepartment().equals('33')}" th:text="마케팅"></td>
             </tr>
+            <tr>
+                <td th:text="언어"></td>
+                <td th:text="${#strings.listJoin(languageList,', ')}"></td>
+            </tr>
+            <tr>
+                <td th:text="프레임워크"></td>
+                <td th:text="${#strings.listJoin(frameworkList,', ')}"></td>
+            </tr>
+            <tr>
+                <td th:text="경력이름"></td>
+                <td th:text="${#strings.listJoin(caNameList,', ')}"></td>
+            </tr>
+            <tr>
+                <td th:text="경력번호"></td>
+                <td th:text="${#strings.listJoin(caDescList,', ')}"></td>
+            </tr>
             </tbody>
         </table>
         <a href="/user/editMyPage" role="button" class="btn btn-primary">수정하기</a>
     </div>
 </th:block>
-
-<!--<th:block layout:fragment="script">-->
-<!--    <script th:inline="javascript">-->
-<!--        /*<![CDATA[*/-->
-
-<!--        $('.emChoose').on('click', (e) => {-->
-<!--            console.log(e.target.value);-->
-<!--        })-->
-
-
-<!--        function movePage(uri, queryString) {-->
-<!--            location.href = uri + queryString;-->
-<!--        }-->
-
-<!--        function searchEmployee(form) {-->
-<!--            /*[- 드롭다운이 아닌 메인 검색 키워드로 검색했을 때 -]*/-->
-<!--            if (isEmpty(form) == true) {-->
-<!--                var searchKeyword = document.getElementById("mainSearchKeyword");-->
-<!--                if (isEmpty(searchKeyword.value) == true) {-->
-<!--                    alert("키워드를 입력해 주세요.");-->
-<!--                    searchKeyword.focus();-->
-<!--                    return false;-->
-<!--                }-->
-
-<!--                form = document.getElementById("searchForm");-->
-<!--                form.searchKeyword.value = searchKeyword.value;-->
-<!--                form.submit();-->
-<!--            }-->
-
-
-<!--            if (isEmpty(form.searchKeyword.value) == true) {-->
-<!--                alert("키워드를 입력해 주세요.");-->
-<!--                form.searchKeyword.focus();-->
-<!--                return false;-->
-<!--            }-->
-<!--        }-->
-
-<!--        /*[- end of function -]*/-->
-<!--        /*]]>*/-->
-<!--    </script>-->
-<!--</th:block>-->
 </html>

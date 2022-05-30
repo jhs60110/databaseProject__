@@ -73,4 +73,28 @@
             }
     </insert>
 
+
+    <delete id="deleteSkillSet" parameterType="String">
+        DELETE
+          FROM SKILL_SET
+         WHERE e_id = #{e_id}
+    </delete>
+
+    <insert id="insertSkillSet" parameterType="String">
+        INSERT INTO SKILL_SET(e_id, s_language, s_framework)
+        VALUES (#{e_id}, #{language}, #{framework})
+    </insert>
+
+<!-- 경력 업데이트 -->
+    <delete id="deleteCareer" parameterType="String">
+        DELETE
+        FROM CAREER
+        WHERE e_id = #{e_id}
+    </delete>
+
+    <insert id="insertCareer" parameterType="String">
+        INSERT INTO CAREER(e_id, ca_name, ca_description)
+        VALUES (#{e_id}, #{ca_name}, #{ca_description})
+    </insert>
+
 </mapper>

@@ -4,14 +4,14 @@
 <body th:fragment="main-body">
 
 
-<div class="fixed-navbar">
+<!--<div class="fixed-navbar">-->
 <!--    여기가 네브바-->
-
+<!--<div>-->
     <div sec:authorize="isAnonymous()" layout:insert="~{/navigations/_navbar}" th:remove="tag"></div>
     <div sec:authorize="hasRole('ROLE_1')" layout:insert="~{/navigations/user_navbar}" th:remove="tag"></div>
     <div sec:authorize="hasRole('ROLE_2')" layout:insert="~{/navigations/manager_navbar}" th:remove="tag"></div>
-
-</div>
+<!--</div>-->
+<!--</div>-->
 <!-- /.fixed-navbar -->
 
 <div id="wrapper">
