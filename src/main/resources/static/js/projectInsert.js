@@ -38,27 +38,29 @@ function addInput(){
     tr.appendChild(element1);
 
     const elementa=document.createElement('td');
-    element1.setAttribute('id','td_namw'+cnt);
+    elementa.setAttribute('id','td_namw'+cnt);
     tr.appendChild(elementa);
 
     const elementb=document.createElement('td');
-    element1.setAttribute('id','td_p_des'+cnt);
+    elementb.setAttribute('id','td_p_des'+cnt);
     tr.appendChild(elementb);
 
     const elementc=document.createElement('td');
-    element1.setAttribute('id','td_start'+cnt);
+    elementc.setAttribute('id','td_start'+cnt);
     tr.appendChild(elementc);
 
     const elementd=document.createElement('td');
-    element1.setAttribute('id','td_end'+cnt);
+    elementd.setAttribute('id','td_end'+cnt);
     tr.appendChild(elementd);
 
     const elemente=document.createElement('td');
-    element1.setAttribute('id','td_role'+cnt);
+    elemente.setAttribute('id','td_role'+cnt);
     tr.appendChild(elemente);
 
     const element2=document.createElement('input');
     element2.setAttribute('id','e_id'+cnt);
+    // element2.setAttribute('id','e_id');
+
     element2.setAttribute('class','inputText')
     element2.setAttribute('type','text');
     element2.setAttribute('value',' ');
@@ -72,7 +74,7 @@ function addInput(){
     elementa.appendChild(element3);
 
     const element4=document.createElement('input');
-    element4.setAttribute('id','p_des'+cnt );
+    element4.setAttribute('id','p_des');
     element4.setAttribute('class','inputText')
     element4.setAttribute('type','text');
     element4.setAttribute('value',' ');
@@ -85,16 +87,12 @@ function addInput(){
     element5.setAttribute('value',' ');
     elementc.appendChild(element5);
 
-
-
     const element6=document.createElement('input');
     element6.setAttribute('id','p_end_date'+cnt );
     element6.setAttribute('class','inputText')
     element6.setAttribute('type','text');
     element6.setAttribute('value',' ');
     elementd.appendChild(element6);
-
-
 
     const element7=document.createElement('input');
     element7.setAttribute('id','p_role'+cnt );

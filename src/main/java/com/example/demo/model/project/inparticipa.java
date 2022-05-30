@@ -1,7 +1,11 @@
 package com.example.demo.model.project;
 
 import com.example.demo.model.CommonDTO;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class inparticipa extends CommonDTO {
     private String e_id_;
     private String e_name;

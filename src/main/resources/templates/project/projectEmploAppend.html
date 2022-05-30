@@ -1,91 +1,195 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en"-->
+<!--      xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{/layout/base}"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head>-->
+<!--    <th:block>-->
+<!--        <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}">-->
+<!--    </th:block>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div layout:fragment="page_content" id="page_content">-->
+<!--    <div class="container">-->
+<!--        <div class="content">-->
+<!--            <h2>프로젝트</h2>-->
+<!--            <table class="table table-hover">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>프로젝트 이름</th>-->
+<!--                    <th>시작일</th>-->
+<!--                    <th>종료일</th>-->
+<!--                    <th>pm</th>-->
+<!--                    <th>고객사</th>-->
+<!--                    <th>수주액</th>-->
+
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                &lt;!&ndash;            빈 프로젝트가 있는지 확인하는 부분&ndash;&gt;-->
+
+<!--                <tr th:each="elem: ${AProject}">-->
+<!--                    <td th:text="${elem.pr_name}"></td>-->
+<!--                    <td th:text="${elem.pr_start_date}"></td>-->
+<!--                    <td th:text="${elem.pr_end_date}"></td>-->
+<!--                    <td th:text="${elem.pr_pm}"></td>-->
+<!--                    <td th:text="${elem.pr_client}"></td>-->
+<!--                    <td th:text="${elem.pr_price}"></td>-->
+
+<!--                </tr>-->
+
+<!--                <tr th:unless="${not #lists.isEmpty( AProject )}">-->
+<!--                    <td colspan="6">조회된 결과가 없습니다.</td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+
+<!--&lt;!&ndash;            <form th:action="@{/project/projectEmploAppend/{path}(path=${pr_id})}" th:method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;                <table>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>사번</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>이름</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>업무내용</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>착수일자</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>종료일자</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>직무</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <tbody id="clientList">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                </table>&ndash;&gt;-->
+<!--&lt;!&ndash;                <button id="submiit" type="submit">제출</button>&ndash;&gt;-->
+<!--&lt;!&ndash;            </form>&ndash;&gt;-->
+<!--            <table>-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>사번</th>-->
+<!--                    <th>이름</th>-->
+<!--                    <th>업무내용</th>-->
+<!--                    <th>착수일자</th>-->
+<!--                    <th>종료일자</th>-->
+<!--                    <th>직무</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody id="clientList">-->
+
+<!--                </tbody>-->
+<!--            </table>-->
+<!--            <button id="addn" onclick="addInput()">추가</button>-->
+<!--            <button id="minus" >빼기</button>-->
+<!--            <button id="submiit" type="submit">제출</button>-->
+
+<!--&lt;!&ndash;            <button class="ss" type="button" id="add"  onclick="" >직원추가</button>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+
+
+
+
+<!--<div layout:fragment="script_area">-->
+
+<!--    <script th:src="@{/js/projectInsert.js}"></script>-->
+<!--    <script th:inline="javascript">-->
+
+<!--    </script>-->
+<!--</div>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/basic}"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      layout:decorate="~{/layout/base}">
+
 <head>
-    <th:block>
-        <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}">
-    </th:block>
+    <title>프로젝트 직원 추가</title>
+    <style>
+        body, html {
+            height: 100%;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+        }
+    </style>
 </head>
-<body>
-<th:block layout:fragment="content">
 <div layout:fragment="page_content" id="page_content">
-    <div class="container">
-        <div class="content">
-            <h2>프로젝트</h2>
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>프로젝트 이름</th>
-                    <th>시작일</th>
-                    <th>종료일</th>
-                    <th>pm</th>
-                    <th>고객사</th>
-                    <th>수주액</th>
+    <div class="container" id="mypage-container">
+        <br>
+        <br>
+        <div class="row">
 
-                </tr>
-                </thead>
-                <tbody>
-                <!--            빈 프로젝트가 있는지 확인하는 부분-->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
 
-                <tr th:each="elem: ${AProject}">
-                    <td th:text="${elem.pr_name}"></td>
-                    <td th:text="${elem.pr_start_date}"></td>
-                    <td th:text="${elem.pr_end_date}"></td>
-                    <td th:text="${elem.pr_pm}"></td>
-                    <td th:text="${elem.pr_client}"></td>
-                    <td th:text="${elem.pr_price}"></td>
-
-                </tr>
-
-                <tr th:unless="${not #lists.isEmpty( AProject )}">
-                    <td colspan="6">조회된 결과가 없습니다.</td>
-                </tr>
-                </tbody>
-            </table>
-
-
-            <table>
-                <thead>
-                <tr>
-                    <th>사번</th>
-                    <th>이름</th>
-                    <th>업무내용</th>
-                    <th>착수알자</th>
-                    <th>종료알자</th>
-                    <th>직무</th>
-                </tr>
-                </thead>
-                <tbody id="clientList">
-
-                </tbody>
-            </table>
-            <button id="addn" onclick="addInput()">추가</button>
-            <button id="minus" >빼기</button>
-            <button id="submiit" type="submit">제출</button>
-
-<!--            <button class="ss" type="button" id="add"  onclick="" >직원추가</button>-->
-
-
-
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form th:action="@{/project/projectEmploAppend/{path}(path=${pr_id})}" th:method="post">
+                                    <h3>프로젝트 직원 추가</h3>
+                                    <div class="form-group row">
+                                        <label for="e_id" class="col-4 col-form-label">사번</label>
+                                        <div class="col-8">
+                                            <input id="e_id" name="e_id" class="form-control here"
+                                                   type="text" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="e_name" class="col-4 col-form-label">이름</label>
+                                        <div class="col-8">
+                                            <input id="e_name" name="e_name" class="form-control here"
+                                                   type="text" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="p_description" class="col-4 col-form-label">업무내용</label>
+                                        <div class="col-8">
+                                            <input id="p_description" name="p_description" class="form-control here"
+                                                   type="text" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="p_start_date" class="col-4 col-form-label">시작일자</label>
+                                        <div class="col-8">
+                                            <input id="p_start_date" name="p_start_date" class="form-control here"
+                                                   type="text" required="required" th:value="${startDate}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="p_end_date" class="col-4 col-form-label">종료일자</label>
+                                        <div class="col-8">
+                                            <input id="p_end_date" name="p_end_date" class="form-control here"
+                                                   type="text" required="required" th:value="${endDate}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="p_role" class="col-4 col-form-label">직무</label>
+                                        <div class="col-8">
+                                            <input id="p_role" name="p_role" class="form-control here" type="text"
+                                                   required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-4 col-8">
+                                            <button id="participantInsert" name="submit" type="submit"
+                                                    class="btn btn-primary">추가완료
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-</th:block>
-</body>
-
-
-
-
 <div layout:fragment="script_area">
-
-    <script th:src="@{/js/projectInsert.js}"></script>
-    <script th:inline="javascript">
-
-    </script>
+    <script th:src="@{/js/auth/myPage/edit.js}"></script>
 </div>
 </html>
