@@ -14,6 +14,11 @@
             }
     </insert>
 
+    <insert id="insertParticipant" parameterType="Participant">
+        INSERT INTO PARTICIPANT(e_id, pr_id, p_description, p_start_date, p_end_date, p_role)
+        VALUES (#{e_id}, #{pr_id}, #{p_description}, #{p_start_date}, #{p_end_date}, #{p_role})
+    </insert>
+
     <select id="selectNTProject" resultType="ProjectDescr" parameterType="String" statementType="CALLABLE">
         select *
         from project
