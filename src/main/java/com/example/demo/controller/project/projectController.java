@@ -129,6 +129,7 @@ public class projectController {
 
         List<Participant> emplInProject = ProjectService.getEmplInProject(push_pr_id);
         model.addAttribute("emplInProject", emplInProject);
+
         List<ProjectTDescr> ATProject = ProjectTService.getATProject(params);
         model.addAttribute("ATProject", ATProject);
 

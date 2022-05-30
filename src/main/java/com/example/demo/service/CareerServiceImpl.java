@@ -15,6 +15,7 @@ public class CareerServiceImpl implements CareerService{
 
     @Override
     public List<CareerDto> getCareerInfo(String e_id) {
+
         return careerMapper.getCareerInfo(e_id);
     }
 }

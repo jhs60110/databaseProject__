@@ -17,14 +17,14 @@ public class EmployeeServicelmpl implements EmployeeService{
     @Autowired
     private UserMapper userMapper;
 
-//  이름으로 employee 검색
+    //  이름으로 employee 검색
     @Override
     public employeeDto getEmployeeInfo(String e_name) {
         return userMapper.getEmployeeInfo(e_name);
 
     }
 
-//  모든 employee 조회
+    //  모든 employee 조회
     @Override
     public List<employeeDto> getEmployeeList(employeeDto params) {
         List<employeeDto> employeeList = Collections.emptyList();

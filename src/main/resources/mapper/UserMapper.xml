@@ -97,4 +97,14 @@
         VALUES (#{e_id}, #{ca_name}, #{ca_description})
     </insert>
 
+
+    <select  id="getAParticipant" resultType="String" parameterType="com.example.demo.model.project.Participant">
+    select *
+    from participant
+    where e_id = #{e_id}
+    </select>
+
+
+
+
 </mapper>

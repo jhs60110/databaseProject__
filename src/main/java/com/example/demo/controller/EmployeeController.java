@@ -1,12 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.controller.user.UserController;
+import com.example.demo.model.project.Participant;
 import com.example.demo.model.user.CareerDto;
 import com.example.demo.model.user.SkillSetDto;
 import com.example.demo.model.user.employeeDto;
 import com.example.demo.service.CareerService;
 import com.example.demo.service.EmployeeService;
 import com.example.demo.service.SkillSetService;
+import com.example.demo.service.ParticiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class EmployeeController {
     private SkillSetService skillSetService;
     @Autowired
     private CareerService careerService;
+    @Autowired
+    private ParticiService particiService;
+
     //    사원 리스트
     @GetMapping(value = "/employee/list")
     public String openEmployeeList(@ModelAttribute("params") employeeDto params, Model model) {
@@ -54,13 +59,15 @@ public class EmployeeController {
 
     // 여기가 그 뭐냐 그 사원 기술스택 확인페이지임
     @GetMapping("/employeeDescrip/{e_id}")
-    public String myPage(Model model ,@ModelAttribute("e_id") String e_id ) {
+    public String myPage(Model model ,@ModelAttribute("e_id") String e_id , @ModelAttribute("push_e_id") String push_e_id) {
 //        뭐 뭐 들어가야하지? 사원 e_id 받은거 넘겨서 출력된 거 model.addatr
 
         logger.info("e_id!!!!!!!!!!!!!!!!! {}", e_id);
 
-
-
+//
+//        List<Participant> Participant= particiService.getParticipant(e_id);
+//        logger.info("Participant!!!!!!!!!!!!!!!!! {}", Participant);
+//        model.addAttribute("Participant", Participant);
 
         List<CareerDto> CareerDtoList = careerService.getCareerInfo(e_id);
         model.addAttribute("Career", CareerDtoList);

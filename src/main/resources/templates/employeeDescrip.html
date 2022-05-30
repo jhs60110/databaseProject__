@@ -62,14 +62,23 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th> 참여한 프로젝트</th>
-                <th>  </th>
+                <th> 참여한 프로젝트 id</th>
+                <th> 프로젝트 description </th>
+                <th> 시작날짜 </th>
+                <th> 종료날짜 </th>
+                <th> 역할 </th>
+
+
             </tr>
             </thead>
             <tbody>
-            <tr th:each="elem: ${SkillSet}">
-                <td  th:text="${elem.s_language}"></td>
-                <td ></td>
+            <tr th:each="elem: ${Participant}">
+                <td  th:text="${elem.pr_id}"></td>
+                <td  th:text="${elem.p_description}"></td>
+                <td  th:text="${elem.p_start_date}"></td>
+                <td  th:text="${elem.p_end_date}"></td>
+                <td  th:text="${elem.p_role}"></td>
+
             <tr>
             </tbody>
         </table>

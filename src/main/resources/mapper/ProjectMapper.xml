@@ -73,9 +73,7 @@
 
         { CALL selectEmplInProject(
                 #{pr_id}
-
-            )
-            }
+            ) }
 
     </select>
 
