@@ -28,7 +28,8 @@
             <tr th:if="${not #lists.isEmpty( employeeList )}" th:each="row : ${employeeList}">
 
                 <td>
-                    <input type="checkbox" class="emChoose" th:id="|emChoose${row.e_id}|" th:value="${row.e_id}">
+                    <input type="hidden" name="nameChk"  id="nameChk" value="<%=request.getParameter('nameChk')%>" />
+                    <input type="checkbox" class="emChoose" th:id="|emChoose${row.e_id}|" th:value="${row.e_id}+ ' ' +${row.e_name}">
                     <!--                    <select name="emChoose" multiple>-->
                     <!--                        <option class="emChoose" th:id="|emChoose${row.e_id}|" th:value="${row.e_id}">선택</option>-->
                     <!--                    </select>-->
@@ -52,11 +53,11 @@
             </tr>
             </tbody>
         </table>
-        <form th:action="@{/project/projectInsert}" th:method="POST" id="pop">
+<!--        <form th:action="@{/project/projectInsert}" th:method="POST" id="pop">-->
             <input id="popIn" name="e_id" type="text">
             <!--               <input   type="submit" th:value="선택완료" onclick="submitData()">-->
             <button id="pp" value="s">선택완료</button>
-        </form>
+<!--        </form>-->
 
 
         <th:block layout:fragment="paging">
@@ -70,23 +71,65 @@
     <script th:src="@{/js/projectInsert.js}"></script>
     <script th:inline="javascript">
         /*<![CDATA[*/
+        // URLSearchParams 객체
+        // url = window.location.href;
+        // const urlParams = url.searchParams;
+        //
+        // // URLSearchParams.get()
+        // document.write(urlParams.get('pram1') + '<br>');
+        // console.log(window.location.search);
+
+        let query = window.location.search;
+
+        console.log(query);
+        n = query.replace("?n=","");
+        console.log(n);
 
         var participa = [];
 
         $('.emChoose').on('click', (e) => {
 
             participa.push(e.target.value);
+
             participain = [...new Set(participa)];
             console.log(participain);
-
+            //
             document.getElementById("popIn").value = participain;
+            // participainLen = participain.length;
+
+
+            sepraParti = participain[0].split(" ");
+            ee_id =sepraParti[0];
+            ee_name = sepraParti[1];
+
+            console.log(ee_id);
+            console.log(ee_name);
 
         })
 
         $(document).on('click', '#pp', function () {
-            document.getElementById("pp").value = participain;
 
-            $(opener.document).find('#jj').val($(this).val());
+            // function fn_selected_cd(Name) {
+            //     if($("#nameChk").val() == "AAA"){  //jQuery로 value사용하여 확인
+            //         //부모창에 jeon이라는 ID를 갖는 input에 파라미터 Name을 대입
+            //         opener.document.getElementById("jeon").value = Name;
+            //     }
+            // }
+
+
+          //   popupButtonId.push(e.target.id);
+          //   aa = popupButtonId[0].replace('add','');
+          //   console.log("popup"+aa);
+          //
+          //
+          // console.log(aa);
+          //   popupButtonId =[];
+
+
+            $(opener.document).find('#e_name'+n).val(ee_name);
+            $(opener.document).find('#e_id'+n).val(ee_id);
+
+
             window.close("employee/list", "팝업 테스트", "width=800, height=600, top=20, left=40");
         });
 

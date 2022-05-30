@@ -35,6 +35,7 @@
                                                    type="text" required="required">
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
                                         <label for="pr_start_date" class="col-4 col-form-label">시작일자</label>
                                         <div class="col-8">
@@ -42,6 +43,7 @@
                                                    type="text" required="required">
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
                                         <label for="pr_end_date" class="col-4 col-form-label">종료일자</label>
                                         <div class="col-8">
@@ -49,6 +51,7 @@
                                                    type="text" required="required">
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
                                         <label for="pr_pm" class="col-4 col-form-label">PM</label>
                                         <div class="col-8">
@@ -56,6 +59,7 @@
                                                    type="text" required="required">
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
                                         <label for="pr_client" class="col-4 col-form-label">고객사</label>
                                         <div class="col-8">
@@ -76,15 +80,21 @@
                                     <div class="form-group row">
                                         <label for="inputEmployee" class="col-4 col-form-label">참여직원</label>
                                         <div class="col-8" id="inputEmployee">
-                                            <input id="jj" type="text" th:value="ㄴ">
+                                            <input id="jj" type="text" th:value="직원을_추가해주세요">
 <!--                                            <p  th:if="${not #strings.isEmpty(employeeDto)}"  th:text="${employeeDto.getE_id()}"></p>-->
 
 <!--                                            <input id="inputEmployee" name="inputEmployee" class="form-control here" type="text"-->
 <!--                                                  required="required">-->
                                         </div>
-                                        <button id="add" >추가</button>
+                                        <input type="button" id="add" th:text="추가" >
+<!--                                        버튼 왜;;이모양이야 버튼박스 안에 '추가'를 넣고 싶은데!!!!!!나한테 왜이래진짜-->
 
-<!--                                        <button  onclick="add8()">보기</button>-->
+
+
+
+
+
+
                                     </div>
 
                                     <div class="form-group row">

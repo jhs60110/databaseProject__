@@ -34,7 +34,6 @@
         WHERE e_name like '%#{e_name}%'
     </select>
 
-
     <select id="getEmployeeList" resultType="com.example.demo.model.user.employeeDto" parameterType="com.example.demo.model.user.employeeDto">
         SELECT *
         FROM EMPLOYEE
@@ -61,4 +60,17 @@
                password = #{password}
          WHERE e_id = #{e_id}
     </update>
+
+    <insert id="inPaprEm" parameterType="com.example.demo.model.project.inparticipa" statementType="CALLABLE">
+        { CALL inputUser(
+                #{pr_id_} ,
+                #{e_id_} ,
+                #{p_des} ,
+                #{p_start_} ,
+                #{p_end_} ,
+                #{p_role_}
+            )
+            }
+    </insert>
+
 </mapper>

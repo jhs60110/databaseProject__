@@ -14,8 +14,7 @@
 <div layout:fragment="page_content" id="page_content">
     <div class="container">
         <div class="content">
-            <h2>진행중인 프로젝트</h2>
-
+            <h2>프로젝트</h2>
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -25,11 +24,11 @@
                     <th>pm</th>
                     <th>고객사</th>
                     <th>수주액</th>
-                    <th></th>
 
                 </tr>
                 </thead>
                 <tbody>
+                <!--            빈 프로젝트가 있는지 확인하는 부분-->
 
                 <tr th:each="elem: ${AProject}">
                     <td th:text="${elem.pr_name}"></td>
@@ -38,13 +37,6 @@
                     <td th:text="${elem.pr_pm}"></td>
                     <td th:text="${elem.pr_client}"></td>
                     <td th:text="${elem.pr_price}"></td>
-                    <form method="get"th:action="@{project/projectDescription/${elem.pr_id}}" >
-                        <input type="hidden" th:value="${elem.pr_id}" name="pr_id">
-                    </form>
-
-                    <td>
-                        <button type="submit" class="pChoose"  th:value="${elem.pr_id}" th:id="|pChoose${elem.pr_id}|" >직원추가</button>
-                    </td>
 
                 </tr>
 
@@ -53,43 +45,29 @@
                 </tr>
                 </tbody>
             </table>
-            <h2>프로젝트 참여직원</h2>
-            <table class="table table-hover">
+
+
+            <table>
                 <thead>
                 <tr>
-                    <th>사원번호</th>
-                    <th>사원이름</th>
-                    <th>업무 내용</th>
-                    <th>착수일자</th>
-                    <th>종료일자</th>
+                    <th>사번</th>
+                    <th>이름</th>
+                    <th>업무내용</th>
+                    <th>착수알자</th>
+                    <th>종료알자</th>
                     <th>직무</th>
-
                 </tr>
                 </thead>
-                <tbody>
-                <!--           사원데이터-->
-
-                <tr th:each="elem: ${emplInProject}">
-                    <td th:text="${elem.e_id}"></td>
-                    <td th:text="${elem.e_name}"></td>
-                    <td th:text="${elem.p_description}"></td>
-                    <td th:text="${elem.p_start_date}"></td>
-                    <td th:text="${elem.p_end_date}"></td>
-                    <td th:text="${elem.p_role}"></td>
-
-                </tr>
-
-                <tr th:unless="${not #lists.isEmpty( emplInProject )}">
-                    <td colspan="6">조회된 결과가 없습니다.</td>
-                </tr>
+                <tbody id="clientList">
 
                 </tbody>
             </table>
+            <button id="addn" onclick="addInput()">추가</button>
+            <button id="minus" >빼기</button>
+            <button id="submiit" type="submit">제출</button>
 
+<!--            <button class="ss" type="button" id="add"  onclick="" >직원추가</button>-->
 
-<!--            <th:block layout:fragment="paging">-->
-<!--                <nav th:replace="fragments/common :: pagination"></nav>-->
-<!--            </th:block>-->
 
 
 
@@ -99,13 +77,14 @@
 </div>
 </body>
 
+
+
+
 <div layout:fragment="script_area">
-    <!--    <script th:src="@{/js/auth/myPage/edit.js}"></script>-->
+
     <script th:src="@{/js/projectInsert.js}"></script>
-    <!--    function addInput(){-->
-    <!--    window.open("employeeList.html","팝업 테스트","width=400, height=300, top=10, left=10");-->
-    <!--    }-->
+    <script th:inline="javascript">
 
+    </script>
 </div>
-
 </html>
