@@ -32,9 +32,11 @@
             <label class="login_label">비밀번호</label><br>
             <input type="password"  id="password" name="password" class="form-control" maxlength="20" autocomplete="off">
         </div>
-
+        <div th:if="${LoginErrorMessage != null}" th:text="${LoginErrorMessage}" style="color:red; text-align:center;"></div>
         <input type="submit" th:value="로그인" id="login_button">
     </form>
+
+
 </div>
 </body>
 </html>
