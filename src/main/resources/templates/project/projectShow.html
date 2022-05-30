@@ -38,7 +38,7 @@
                 <td th:text="${elem.pr_name}"></td>
                 <td th:text="${elem.pr_start_date}"></td>
                 <td th:text="${elem.pr_end_date}"></td>
-                <td th:text="${elem.pr_pm}"></td>
+                <td th:text="${elem.pr_pm_name}"></td>
                 <td th:text="${elem.pr_client}"></td>
                 <td th:text="${elem.pr_price}"></td>
 
@@ -48,6 +48,9 @@
 
                 <td>
                     <button type="submit" class="pChoose"  th:value="${elem.pr_id}" th:id="|pChoose${elem.pr_id}|" >자세히</button>
+                </td>
+                <td>
+                    <a th:href="@{/project/projectUpdate/{path}(path = ${elem.pr_id})}">수정</a>
                 </td>
 
             </tr>

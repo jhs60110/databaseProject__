@@ -184,5 +184,18 @@ public class projectController {
         return "redirect:/project/projectDescription/" + pr_id;
     }
 
+    @GetMapping(value = "/projectUpdate/{pr_id}")
+    public String updateProject(Model model, @PathVariable String pr_id) {
+        ProjectDescr projectDescr = projectService.getProjectById(pr_id);
+        model.addAttribute("projectDescr", projectDescr);
+        return "project/projectUpdate";
+    }
+
+    @PostMapping(value = "/projectUpdate/{pr_id}")
+    public String updateProject(ProjectDescr projectDescr, @PathVariable String pr_id){
+        projectService.updateProject(projectDescr);
+        return "redirect:/main";
+    }
+
 }
 

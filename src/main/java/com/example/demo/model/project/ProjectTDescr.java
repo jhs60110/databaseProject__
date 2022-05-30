@@ -10,6 +10,8 @@ public class ProjectTDescr extends CommonDTO {
     private String pr_pm;
     private String pr_client;
 
+    private String pr_pm_name;
+
     public String getPr_id() {
         return pr_id;
     }

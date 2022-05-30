@@ -1,7 +1,11 @@
 package com.example.demo.model.project;
 
 import com.example.demo.model.CommonDTO;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ProjectDescr extends CommonDTO {
 
     private String pr_id;
@@ -12,6 +16,8 @@ public class ProjectDescr extends CommonDTO {
     private String pr_client;
     private String pr_price;
     private String pr_termination;
+
+    private String pr_pm_name;
 
 
     public String getPr_id() {
