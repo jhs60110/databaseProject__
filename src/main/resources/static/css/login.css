@@ -85,3 +85,47 @@ body, html {
 .btn.btn-signIn:focus {
     background-color: rgb(12, 97, 33);
 }
+
+#body {
+    background-color : #f8f9fa;
+}
+
+#page_content {
+    background-color : #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    margin-top : 50px;
+}
+
+.sign-in-input {
+    margin-top: 50px;
+    width: 380px;
+}
+
+.form-control {
+    height: 56px;
+}
+
+.login_label {
+    font-weight : 20;
+}
+
+#div_pw {
+    margin-top: 20px;
+}
+
+#login_button {
+    margin-top: 20px;
+    width: 380px;
+    height: 56px;
+    background-color: #1d84df;
+    color: #ffffff;
+    border-color: #1d84df;
+    border-radius: 5px;
+    font-size : 20px;
+    font-weight : 20;
+}
