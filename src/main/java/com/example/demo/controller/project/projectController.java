@@ -108,6 +108,10 @@ public class projectController {
 
         List<ProjectDescr> AProject = ProjectService.getAProject(params);
         model.addAttribute("AProject", AProject);
+//
+//        List<ProjectTDescr> ATProject = ProjectTService.getATProject(Tparams);
+//        model.addAttribute("ATProject", ATProject);
+
 
         return "project/projectDescription";
     }
@@ -117,9 +121,9 @@ public class projectController {
 
         List<Participant> emplInProject = ProjectService.getEmplInProject(push_pr_id);
         model.addAttribute("emplInProject", emplInProject);
-
         List<ProjectTDescr> ATProject = ProjectTService.getATProject(params);
         model.addAttribute("ATProject", ATProject);
+
 
         return "project/projectTDescription";
     }
@@ -138,20 +142,25 @@ public class projectController {
     @GetMapping(value = "/projectEmploAppend/{pr_id}")
     public String projectEmploAppend(Model model, @PathVariable String pr_id, @ModelAttribute("params") ProjectDescr params) {
         List<ProjectDescr> AProject = ProjectService.getAProject(params);
+
+        ProjectDescr aProject = AProject.get(0);
+        String startDate = aProject.getPr_start_date();
+        String endDate = aProject.getPr_end_date();
+
         model.addAttribute("AProject", AProject);
+        model.addAttribute("pr_id", pr_id);
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
 
 
         return "project/projectEmploAppend";
     }
     @PostMapping(value = "/projectEmploAppend/{pr_id}")
-    public String projectEmploAppenda(@RequestBody inparticipa requestDto) {
-
-
-        inparticipa inparticipa = SProjectEmplInsertService.projectEmpInsert(requestDto);
-
-
-
-        return "project/projectEmploAppend";
+    public String insertParticipant(Participant participant, @PathVariable String pr_id) {
+        participant.setPr_id(pr_id);
+        projectService.insertParticipant(participant);
+        logger.info("new member added!!");
+        return "redirect:/project/projectDescription/" + pr_id;
     }
 
 }

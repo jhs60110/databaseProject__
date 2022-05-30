@@ -63,12 +63,13 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             User userRole = (User) authentication.getPrincipal();
-
             logger.info("Login id signIn : {}", authentication);
         } else {
             logger.info("signIn : authentication NULL");
+            String errorMsg = "아이디 또는 비밀번호가 일치하지 않습니다.";
+            model.addAttribute("LoginErrorMessage", errorMsg);
         }
-        model.addAttribute("LoginErrorMessage", "아이디 또는 비밀번호가 일치하지 않습니다.");
+
         logger.info("Login id : {}", user.getId());
         logger.info("Login username : {}", user.getUsername());
 

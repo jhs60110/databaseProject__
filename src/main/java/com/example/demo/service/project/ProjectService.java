@@ -47,6 +47,10 @@ public class ProjectService {
         projectMapper.createProject(projectDescr);
     }
 
+    public static void insertParticipant(Participant participant) {
+        projectMapper.insertParticipant(participant);
+    }
+
     //  모든 project 조회
 
     public List<ProjectDescr> getProjectList(ProjectDescr params) {
