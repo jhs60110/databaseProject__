@@ -18,3 +18,6 @@
 //       partNameEl.innerHTML = "없음";
 //   }
 // });
+$(document).on('click', '#add', function () {
+    window.open("/project/employee/list", "팝업 테스트", "width=800, height=600, top=20, left=40");
+});

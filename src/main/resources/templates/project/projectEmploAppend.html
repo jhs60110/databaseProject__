@@ -105,7 +105,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/base}">
+      layout:decorate="~{/layout/basic}">
 
 <head>
     <title>프로젝트 직원 추가</title>
@@ -117,7 +117,8 @@
         }
     </style>
 </head>
-<div layout:fragment="page_content" id="page_content">
+<!--<div layout:fragment="page_content" id="page_content">-->
+    <th:block layout:fragment="content">
     <div class="container" id="mypage-container">
         <br>
         <br>
@@ -137,6 +138,7 @@
                                             <input id="e_id" name="e_id" class="form-control here"
                                                    type="text" required="required">
                                         </div>
+                                        <button class="ss" type="button" id="add"  onclick="" >직원추가</button>
                                     </div>
                                     <div class="form-group row">
                                         <label for="e_name" class="col-4 col-form-label">이름</label>
@@ -188,7 +190,8 @@
             </div>
         </div>
     </div>
-</div>
+    </th:block>
+<!--</div>-->
 <div layout:fragment="script_area">
     <script th:src="@{/js/auth/myPage/edit.js}"></script>
 </div>
