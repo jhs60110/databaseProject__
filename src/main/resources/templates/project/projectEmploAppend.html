@@ -3,7 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/base}"
+      layout:decorate="~{/layout/basic}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block>
@@ -11,6 +11,7 @@
     </th:block>
 </head>
 <body>
+<th:block layout:fragment="content">
 <div layout:fragment="page_content" id="page_content">
     <div class="container">
         <div class="content">
@@ -73,6 +74,8 @@
         </div>
     </div>
 </div>
+
+</th:block>
 </body>
 
 

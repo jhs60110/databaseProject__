@@ -20,7 +20,7 @@
                 <th>이름</th>
                 <th>학력</th>
                 <th>부서</th>
-                <th></th>
+<!--                <th></th>-->
             </tr>
             </thead>
             <tbody>
@@ -35,9 +35,9 @@
                 <td th:if="${row.department.equals('22')}" th:text="연구개발"></td>
                 <td th:if="${row.department.equals('33')}" th:text="마케팅"></td>
 
-                <td>
-                    <button class="emChoose"  th:value="${row.e_id}" th:id="|emChoose${row.e_id}|" >선택</button>
-                </td>
+<!--                <td>-->
+<!--                    <button class="emChoose"  th:value="${row.e_id}" th:id="|emChoose${row.e_id}|" >선택</button>-->
+<!--                </td>-->
             </tr>
             <tr th:unless="${not #lists.isEmpty( employeeList )}">
                 <td colspan="5">조회된 결과가 없습니다.</td>

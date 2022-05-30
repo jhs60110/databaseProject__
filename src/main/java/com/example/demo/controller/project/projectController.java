@@ -108,10 +108,6 @@ public class projectController {
 
         List<ProjectDescr> AProject = ProjectService.getAProject(params);
         model.addAttribute("AProject", AProject);
-//
-//        List<ProjectTDescr> ATProject = ProjectTService.getATProject(Tparams);
-//        model.addAttribute("ATProject", ATProject);
-
 
         return "project/projectDescription";
     }
@@ -121,9 +117,9 @@ public class projectController {
 
         List<Participant> emplInProject = ProjectService.getEmplInProject(push_pr_id);
         model.addAttribute("emplInProject", emplInProject);
+
         List<ProjectTDescr> ATProject = ProjectTService.getATProject(params);
         model.addAttribute("ATProject", ATProject);
-
 
         return "project/projectTDescription";
     }

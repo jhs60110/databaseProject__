@@ -10,6 +10,9 @@ public class ProjectDescr extends CommonDTO {
     private String pr_end_date;
     private String pr_pm;
     private String pr_client;
+    private String pr_price;
+    private String pr_termination;
+
 
     public String getPr_id() {
         return pr_id;
@@ -19,8 +22,6 @@ public class ProjectDescr extends CommonDTO {
         this.pr_id = pr_id;
     }
 
-    private String pr_price;
-    private String pr_termination;
 
     public String getPr_termination() {
         return pr_termination;

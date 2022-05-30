@@ -3,100 +3,96 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/base}"
+      layout:decorate="~{/layout/basic}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <th:block>
-        <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}">
-    </th:block>
-</head>
+<!--<head>-->
+<!--    <th:block>-->
+<!--        <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}">-->
+<!--    </th:block>-->
+<!--</head>-->
 <body>
-<div layout:fragment="page_content" id="page_content">
-    <div class="container">
-        <div class="content">
-            <h2>진행중인 프로젝트</h2>
+<th:block layout:fragment="content">
+    <div layout:fragment="page_content" id="page_content">
+        <div class="container">
+            <div class="content">
+                <h2>진행중인 프로젝트</h2>
 
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>프로젝트 이름</th>
-                    <th>시작일</th>
-                    <th>종료일</th>
-                    <th>pm</th>
-                    <th>고객사</th>
-                    <th>수주액</th>
-                    <th></th>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>프로젝트 이름</th>
+                        <th>시작일</th>
+                        <th>종료일</th>
+                        <th>pm</th>
+                        <th>고객사</th>
+                        <th>수주액</th>
+                        <th></th>
 
-                </tr>
-                </thead>
-                <tbody>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                <tr th:each="elem: ${AProject}">
-                    <td th:text="${elem.pr_name}"></td>
-                    <td th:text="${elem.pr_start_date}"></td>
-                    <td th:text="${elem.pr_end_date}"></td>
-                    <td th:text="${elem.pr_pm}"></td>
-                    <td th:text="${elem.pr_client}"></td>
-                    <td th:text="${elem.pr_price}"></td>
-                    <form method="get"th:action="@{project/projectDescription/${elem.pr_id}}" >
-                        <input type="hidden" th:value="${elem.pr_id}" name="pr_id">
-                    </form>
+                    <tr th:each="elem: ${AProject}">
+                        <td th:text="${elem.pr_name}"></td>
+                        <td th:text="${elem.pr_start_date}"></td>
+                        <td th:text="${elem.pr_end_date}"></td>
+                        <td th:text="${elem.pr_pm}"></td>
+                        <td th:text="${elem.pr_client}"></td>
+                        <td th:text="${elem.pr_price}"></td>
+                        <form method="get" th:action="@{project/projectDescription/${elem.pr_id}}">
+                            <input type="hidden" th:value="${elem.pr_id}" name="pr_id">
+                        </form>
 
-                    <td>
-                        <button type="submit" class="pChoose"  th:value="${elem.pr_id}" th:id="|pChoose${elem.pr_id}|" >직원추가</button>
-                    </td>
+                        <td  th:if="${#authorization.expression('hasRole(''2'')')}">
+                            <button  type="submit" class="pChoose" th:value="${elem.pr_id}"
+                                    th:id="|pChoose${elem.pr_id}|">직원추가
+                            </button>
+                        </td>
 
-                </tr>
+                    </tr>
 
-                <tr th:unless="${not #lists.isEmpty( AProject )}">
-                    <td colspan="6">조회된 결과가 없습니다.</td>
-                </tr>
-                </tbody>
-            </table>
-            <h2>프로젝트 참여직원</h2>
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>사원번호</th>
-                    <th>사원이름</th>
-                    <th>업무 내용</th>
-                    <th>착수일자</th>
-                    <th>종료일자</th>
-                    <th>직무</th>
+                    <tr th:unless="${not #lists.isEmpty( AProject )}">
+                        <td colspan="6">조회된 결과가 없습니다.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h2>프로젝트 참여직원</h2>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>사원번호</th>
+                        <th>사원이름</th>
+                        <th>업무 내용</th>
+                        <th>착수일자</th>
+                        <th>종료일자</th>
+                        <th>직무</th>
 
-                </tr>
-                </thead>
-                <tbody>
-                <!--           사원데이터-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--           사원데이터-->
 
-                <tr th:each="elem: ${emplInProject}">
-                    <td th:text="${elem.e_id}"></td>
-                    <td th:text="${elem.e_name}"></td>
-                    <td th:text="${elem.p_description}"></td>
-                    <td th:text="${elem.p_start_date}"></td>
-                    <td th:text="${elem.p_end_date}"></td>
-                    <td th:text="${elem.p_role}"></td>
+                    <tr th:each="elem: ${emplInProject}">
+                        <td th:text="${elem.e_id}"></td>
+                        <td th:text="${elem.e_name}"></td>
+                        <td th:text="${elem.p_description}"></td>
+                        <td th:text="${elem.p_start_date}"></td>
+                        <td th:text="${elem.p_end_date}"></td>
+                        <td th:text="${elem.p_role}"></td>
 
-                </tr>
+                    </tr>
 
-                <tr th:unless="${not #lists.isEmpty( emplInProject )}">
-                    <td colspan="6">조회된 결과가 없습니다.</td>
-                </tr>
+                    <tr th:unless="${not #lists.isEmpty( emplInProject )}">
+                        <td colspan="6">조회된 결과가 없습니다.</td>
+                    </tr>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
-
-<!--            <th:block layout:fragment="paging">-->
-<!--                <nav th:replace="fragments/common :: pagination"></nav>-->
-<!--            </th:block>-->
-
-
-
-
+            </div>
         </div>
     </div>
-</div>
+</th:block>
 </body>
 
 <div layout:fragment="script_area">
