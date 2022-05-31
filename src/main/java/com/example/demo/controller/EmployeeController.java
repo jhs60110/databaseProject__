@@ -34,7 +34,30 @@ public class EmployeeController {
     //    사원 리스트
     @GetMapping(value = "/employee/list")
     public String openEmployeeList(@ModelAttribute("params") employeeDto params, Model model) {
+        if (params.getSearchKeyword() != null) {
+            if (params.getSearchKeyword().equals("개발자")) {
+                params.setSearchKeyword("00");
+            } else if (params.getSearchKeyword().equals("경영관리")) {
+                params.setSearchKeyword("11");
+            } else if (params.getSearchKeyword().equals("연구관리")) {
+                params.setSearchKeyword("22");
+            } else if (params.getSearchKeyword().equals("마케팅")) {
+                params.setSearchKeyword("33");
+            } else if (params.getSearchKeyword().equals("고졸")) {
+                params.setSearchKeyword("1");
+            } else if (params.getSearchKeyword().equals("전문학사")) {
+                params.setSearchKeyword("2");
+            } else if (params.getSearchKeyword().equals("학사")) {
+                params.setSearchKeyword("3");
+            } else if (params.getSearchKeyword().equals("석사")) {
+                params.setSearchKeyword("4");
+            } else if (params.getSearchKeyword().equals("박사")) {
+                params.setSearchKeyword("5");
+            }
+        }
+        logger.info("searchKeyword: {}", params.getSearchKeyword());
         List<employeeDto> employeeList = employeeService.getEmployeeList(params);
+
         model.addAttribute("employeeList", employeeList);
 
         return "employeeList";

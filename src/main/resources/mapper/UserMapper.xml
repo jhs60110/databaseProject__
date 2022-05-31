@@ -37,7 +37,7 @@
     <select id="getEmployeeList" resultType="com.example.demo.model.user.employeeDto" parameterType="com.example.demo.model.user.employeeDto">
         SELECT *
         FROM EMPLOYEE
-        --         WHERE
+--         WHERE
         <include refid="CommonMapper.search" />
         ORDER BY e_id ASC
         <include refid="CommonMapper.paging" />
@@ -46,7 +46,7 @@
     <select id="getEmployeeTotalCount" resultType="int" parameterType="com.example.demo.model.user.employeeDto">
         SELECT COUNT(*)
         FROM EMPLOYEE
-        --         WHERE
+--         WHERE
         <include refid="CommonMapper.search" />
     </select>
 
