@@ -28,8 +28,13 @@
 
                 <td th:text="${row.e_id}"></td>
                 <td th:text="${row.e_name}"></td>
-                <td th:text="${row.academic_level}"></td>
-<!--                <td th:text="${row.department}"></td>-->
+<!--                <td th:text="${row.academic_level}"></td>-->
+                <td th:if="${row.academic_level.equals('1')}" th:text="고졸"></td>
+                <td th:if="${row.academic_level.equals('2')}" th:text="전문학사"></td>
+                <td th:if="${row.academic_level.equals('3')}" th:text="학사"></td>
+                <td th:if="${row.academic_level.equals('4')}" th:text="석사"></td>
+                <td th:if="${row.academic_level.equals('5')}" th:text="박사"></td>
+                <!--                <td th:text="${row.department}"></td>-->
                 <td th:if="${row.department.equals('00')}" th:text="개발자"></td>
                 <td th:if="${row.department.equals('11')}" th:text="경영관리"></td>
                 <td th:if="${row.department.equals('22')}" th:text="연구개발"></td>

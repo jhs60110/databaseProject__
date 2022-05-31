@@ -73,7 +73,6 @@ public class mainController {
         String userRole = user.getRole();
         model.addAttribute("userRole", userRole);
 
-
         List<ProjectDescr> Project = projectService.getProjectList(params);
 
         model.addAttribute("ProjectDe", Project);
