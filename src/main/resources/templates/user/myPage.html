@@ -68,12 +68,12 @@
             </tr>
             <tr>
                 <td th:text="학력"></td>
-<!--                <td th:text="${user.getAcademic_level()}"></td>-->
-                <td th:if="${user.getAcademic_level().equals('1')}" th:text="고졸"></td>
-                <td th:if="${user.getAcademic_level().equals('2')}" th:text="전문학사"></td>
-                <td th:if="${user.getAcademic_level().equals('3')}" th:text="학사"></td>
-                <td th:if="${user.getAcademic_level().equals('4')}" th:text="석사"></td>
-                <td th:if="${user.getAcademic_level().equals('5')}" th:text="박사"></td>
+                <td th:text="${user.getAcademic_level()}"></td>
+<!--                <td th:if="${user.getAcademic_level().equals('1')}" th:text="고졸"></td>-->
+<!--                <td th:if="${user.getAcademic_level().equals('2')}" th:text="전문학사"></td>-->
+<!--                <td th:if="${user.getAcademic_level().equals('3')}" th:text="학사"></td>-->
+<!--                <td th:if="${user.getAcademic_level().equals('4')}" th:text="석사"></td>-->
+<!--                <td th:if="${user.getAcademic_level().equals('5')}" th:text="박사"></td>-->
             </tr>
             <tr>
                 <td th:text="직급"></td>
@@ -90,11 +90,10 @@
             </tr>
             <tr>
                 <td th:text="부서"></td>
-<!--                <td th:text="${user.getDepartment()}"></td>-->
-                <td th:if="${user.getDepartment().equals('00')}" th:text="개발자"></td>
-                <td th:if="${user.getDepartment().equals('11')}" th:text="경영관리"></td>
-                <td th:if="${user.getDepartment().equals('22')}" th:text="연구개발"></td>
-                <td th:if="${user.getDepartment().equals('33')}" th:text="마케팅"></td>
+                <td th:text="${user.getDepartment()}"></td>
+<!--                <td th:if="${user.getDepartment().equals('00')}" th:text="개발자"></td>-->
+<!--                <td th:if="${user.getDepartment().equals('11')}" th:text="경영관리"></td>-->
+<!--                <td th:if="${user.getDepartment().equals('33')}" th:text="마케팅"></td>-->
             </tr>
             <tr>
                 <td th:text="언어"></td>
