@@ -53,11 +53,11 @@
                                         <label for="academic_level" class="col-4 col-form-label">학력</label>
                                         <div class="col-8">
                                             <select name="academic_level" id="academic_level" class="form-control">
-                                                <option value="1" th:selected="${user.getAcademic_level()} == '1'">고졸</option>
-                                                <option value="2" th:selected="${user.getAcademic_level()} == '2'">전문학사(2-3년제)</option>
-                                                <option value="3" th:selected="${user.getAcademic_level()} == '3'">학사(4년제)</option>
-                                                <option value="4" th:selected="${user.getAcademic_level()} == '4'">석사(대학원 석사)</option>
-                                                <option value="5" th:selected="${user.getAcademic_level()} == '5'">박사(대학원 박사)</option>
+                                                <option value="고졸" th:selected="${user.getAcademic_level()} == '고졸'">고졸</option>
+                                                <option value="전문학사" th:selected="${user.getAcademic_level()} == '전문학사'">전문학사(2-3년제)</option>
+                                                <option value="학사" th:selected="${user.getAcademic_level()} == '학사'">학사(4년제)</option>
+                                                <option value="석사" th:selected="${user.getAcademic_level()} == '석사'">석사(대학원 석사)</option>
+                                                <option value="박사" th:selected="${user.getAcademic_level()} == '박사'">박사(대학원 박사)</option>
                                             </select>
                                         </div>
                                     </div>
@@ -90,6 +90,13 @@
                                         <div class="col-8">
                                             <input id="password" name="password" class="form-control here" type="text"
                                                    required="required" th:value="${user.getPassword()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="department" class="col-4 col-form-label">부서</label>
+                                        <div class="col-8">
+                                            <input id="department" name="department" class="form-control here" type="text"
+                                                   required="required" th:value="${user.getDepartment()}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group row">
