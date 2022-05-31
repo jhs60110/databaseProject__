@@ -23,22 +23,22 @@
                             AND e_id LIKE CONCAT('%', #{searchKeyword}, '%')
                         </when>
                         <when test="'e_name'.equals(searchType)">
---                             AND
+                            --                             AND
                             AND e_name LIKE CONCAT('%', #{searchKeyword}, '%')
                         </when>
                         <when test="'academicLevel'.equals(searchType)">
---                             AND
+                            --                             AND
                             AND academic_level LIKE CONCAT('%', #{searchKeyword}, '%')
                         </when>
                         <when test="'department'.equals(searchType)">
---                             AND
+                            --                             AND
                             AND department LIKE CONCAT('%', #{searchKeyword}, '%')
                         </when>
                     </choose>
                 </when>
                 <!-- 검색 유형이 없을 때 -->
                 <otherwise>
---                     AND
+                    --                     AND
                     AND
                     (
                     e_id LIKE CONCAT('%', #{searchKeyword}, '%')
@@ -59,78 +59,78 @@
                     <!-- 검색 키워드가 있을 때 -->
                     <when test="searchKeyword != null and searchKeyword != ''">
                         <choose>
-                                <!-- 검색 유형이 있을 때 -->
-                                <when test="searchType != null and searchType != ''">
-                                    <choose>
-                                        <when test="'pr_name'.equals(searchType)">
-                                            --                             AND
-                                            AND pr_name LIKE CONCAT('%', #{searchKeyword}, '%')
-                                            <choose>
-                                                <when test="startDate != '' and endDate == ''">
-                                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
-                                                </when>
-                                                <when test="startDate == '' and endDate != ''">
-                                                    AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
-                                                </when>
-                                                <when test="startDate != '' and endDate != ''">
-                                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
-                                                </when>
-                                            </choose>
-                                        </when>
-                                        <when test="'pr_pm'.equals(searchType)">
-                                            --                             AND
-                                            AND e_name LIKE CONCAT('%', #{searchKeyword}, '%')
-                                            <choose>
-                                                <when test="startDate != '' and endDate == ''">
-                                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
-                                                </when>
-                                                <when test="startDate == '' and endDate != ''">
-                                                    AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
-                                                </when>
-                                                <when test="startDate != '' and endDate != ''">
-                                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
-                                                </when>
-                                            </choose>
-                                        </when>
-                                        <when test="'pr_client'.equals(searchType)">
-                                            --                             AND
-                                            AND pr_client LIKE CONCAT('%', #{searchKeyword}, '%')
-                                            <choose>
-                                                <when test="startDate != '' and endDate == ''">
-                                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
-                                                </when>
-                                                <when test="startDate == '' and endDate != ''">
-                                                    AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
-                                                </when>
-                                                <when test="startDate != '' and endDate != ''">
-                                                    AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
-                                                </when>
-                                            </choose>
+                            <!-- 검색 유형이 있을 때 -->
+                            <when test="searchType != null and searchType != ''">
+                                <choose>
+                                    <when test="'pr_name'.equals(searchType)">
+                                        --                             AND
+                                        AND pr_name LIKE CONCAT('%', #{searchKeyword}, '%')
+                                        <choose>
+                                            <when test="startDate != '' and endDate == ''">
+                                                AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
+                                            </when>
+                                            <when test="startDate == '' and endDate != ''">
+                                                AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
+                                            </when>
+                                            <when test="startDate != '' and endDate != ''">
+                                                AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
+                                            </when>
+                                        </choose>
+                                    </when>
+                                    <when test="'pr_pm'.equals(searchType)">
+                                        --                             AND
+                                        AND pr_pm LIKE CONCAT('%', #{searchKeyword}, '%')
+                                        <choose>
+                                            <when test="startDate != '' and endDate == ''">
+                                                AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
+                                            </when>
+                                            <when test="startDate == '' and endDate != ''">
+                                                AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
+                                            </when>
+                                            <when test="startDate != '' and endDate != ''">
+                                                AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
+                                            </when>
+                                        </choose>
+                                    </when>
+                                    <when test="'pr_client'.equals(searchType)">
+                                        --                             AND
+                                        AND pr_client LIKE CONCAT('%', #{searchKeyword}, '%')
+                                        <choose>
+                                            <when test="startDate != '' and endDate == ''">
+                                                AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
+                                            </when>
+                                            <when test="startDate == '' and endDate != ''">
+                                                AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
+                                            </when>
+                                            <when test="startDate != '' and endDate != ''">
+                                                AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
+                                            </when>
+                                        </choose>
 
-                                        </when>
+                                    </when>
 
-                                    </choose>
-                                </when>
-                                <!-- 검색 유형이 없을 때 -->
-                                <otherwise>
+                                </choose>
+                            </when>
+                            <!-- 검색 유형이 없을 때 -->
+                            <otherwise>
                                 AND
-                                    (
-                                    pr_name LIKE CONCAT('%', #{searchKeyword}, '%')
-                                    OR e_name LIKE CONCAT('%', #{searchKeyword}, '%')
-                                    OR pr_client LIKE CONCAT('%', #{searchKeyword}, '%')
-                                    )
-                                    <choose>
-                                        <when test="startDate != '' and endDate == ''">
-                                            AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
-                                        </when>
-                                        <when test="startDate == '' and endDate != ''">
-                                            AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
-                                        </when>
-                                        <when test="startDate != '' and endDate != ''">
-                                            AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
-                                        </when>
-                                    </choose>
-                                </otherwise>
+                                (
+                                pr_name LIKE CONCAT('%', #{searchKeyword}, '%')
+                                OR pr_pm LIKE CONCAT('%', #{searchKeyword}, '%')
+                                OR pr_client LIKE CONCAT('%', #{searchKeyword}, '%')
+                                )
+                                <choose>
+                                    <when test="startDate != '' and endDate == ''">
+                                        AND DATE(pr_start_date) BETWEEN #{startDate} AND "9999-12-31"
+                                    </when>
+                                    <when test="startDate == '' and endDate != ''">
+                                        AND DATE(pr_end_date) BETWEEN "0000-01-01" AND #{endDate}
+                                    </when>
+                                    <when test="startDate != '' and endDate != ''">
+                                        AND DATE(pr_start_date) BETWEEN #{startDate} AND #{endDate}
+                                    </when>
+                                </choose>
+                            </otherwise>
                         </choose>
                     </when>
                     <otherwise>
